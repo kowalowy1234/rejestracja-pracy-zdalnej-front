@@ -4,7 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   
   const [userData, setUserData] = useState({username: '', password: ''})
 
@@ -16,8 +16,6 @@ const LoginForm = () => {
     .then(data => setUsers(data));
     
   }, [])
-
-  console.log(users);
   
   const handleClick = e => {
     e.preventDefault();
@@ -26,9 +24,9 @@ const LoginForm = () => {
 
     console.log(findUser)
 
-    findUser ? localStorage.setItem('username', userData.username) : console.log('Wprowadzono złe dane');
+    findUser ? localStorage.setItem('username', userData.username) : alert('Wprowadzono błędne dane');
 
-    localStorage.setItem('username', userData.username);
+    props.handleSignIn()
   }
 
   const handleUsername = e => {

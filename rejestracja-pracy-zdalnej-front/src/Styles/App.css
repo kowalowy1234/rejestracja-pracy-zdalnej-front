@@ -40,6 +40,10 @@ nav ul {
   justify-content: center;
 }
 
+nav div {
+  flex: 1;
+}
+
 nav ul > li {
   padding: 10px;
 }
