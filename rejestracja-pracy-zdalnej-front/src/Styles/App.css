@@ -37,7 +37,7 @@ nav ul {
   padding: 0;
   text-align: center;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 nav div {
@@ -47,6 +47,7 @@ nav div {
 nav ul > li {
   padding: 10px;
 }
+
 
 .loginFormWrapper{
   margin-top: 100px;
@@ -65,4 +66,10 @@ nav ul > li {
   /* box-shadow: 0 2px 10px #eeeeee; */
   border-radius: 4px;
   background-color: white;
+}
+
+.loginFormWrapper p {
+  color: red;
+  max-width: 200px;
+  align-self: center;
 }

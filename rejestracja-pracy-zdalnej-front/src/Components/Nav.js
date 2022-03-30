@@ -1,32 +1,31 @@
 import '../Styles/App.css';
 import { Button } from 'primereact/button';
+import { useEffect, useState } from 'react';
+import NavLinks from './NavLinks'
 
 const Nav = (props) => {
 
-  const signOutButton = <div>
+  const loggedInUser = localStorage.getItem('token');
+
+  const handleSignOut = () =>{
+    props.signOut();
+  }
+
+  const [userType, setUserType] = useState(null)
+
+  const signOutButton =
       <Button 
         label="Wyloguj"
-        onClick={props.handleSignOut}
-      />
-    </div>
+        onClick={handleSignOut}
+        className='sign-out-button'
+      />;
 
-  const loggedInUser = localStorage.getItem('username')
-
+  // const Links = admin ? <AdminLinks /> : (manager ? <ManagerLinks /> : (loggedInUser ? <EmployeeLinks /> : null))
   return (
     <nav>
-      {/* <ul>
-        <li>Link 1</li>
-        <li>Link 2</li>
-        <li>Link 3</li>       
-      </ul> */}
-      <h1>Rejestracja pracy zdalnej</h1>
-      {/* <h3>
-        <p>Zaloguj się</p>
-        <i className='pi pi-sign-in' style={{'fontSize': '1.7em', 'color': '#a0a0a0'}}></i>
-      </h3> */}
-
+      {loggedInUser && <NavLinks />}
+      {!loggedInUser && <h1>Rejestracja pracy zdalnej</h1>}
       {loggedInUser && signOutButton}
-
     </nav>
   );
 }
