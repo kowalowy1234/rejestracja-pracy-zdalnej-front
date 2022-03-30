@@ -27,7 +27,7 @@ const Nav = (props) => {
     <nav>
       {loggedInUser && <NavLinks />}
       {!loggedInUser && <h1>Rejestracja pracy zdalnej</h1>}
-      {loggedInUser && <h2>Firma: {localStorage.getItem('nazwaFirmy')}</h2>}
+      {loggedInUser && <h2>Firma: {props.companyName || localStorage.getItem('nazwaFirmy')}</h2>}
       {loggedInUser && signOutButton}
     </nav>
   );

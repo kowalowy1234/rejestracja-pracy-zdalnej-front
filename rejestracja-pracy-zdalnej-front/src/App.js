@@ -16,11 +16,52 @@ import {
 
 const App = () => {
 
-  const [loggedInUser, setLoggedInUser] = useState()
+  const [loggedInUser, setLoggedInUser] = useState({type: null, company: null})
+
+  console.log(loggedInUser)
 
   const handleSignIn = () => {
-    setLoggedInUser(true);
+    FetchUserData(localStorage.getItem('token'))
+    FetchCompanyName()
   }
+
+  const FetchUserData = (token) => {
+    axios.get(`http://127.0.0.1:8000/auth/users/me/`,{
+    headers: {
+      'Authorization': `Token ${token}`
+    }
+  })
+  .then(function (response) {
+    const firmaId = Number(response.data.firma);
+    console.log(firmaId);
+    if(response.data.is_superuser){
+      localStorage.setItem('admin', true);
+      FetchCompanyName(firmaId)
+      setLoggedInUser(prevUser => ({...prevUser, type: 'admin'}))
+    }
+    else if(response.data.is_staff){
+      localStorage.setItem('kierownik', true)
+      FetchCompanyName(firmaId)
+      setLoggedInUser(prevUser => ({...prevUser, type: 'kierownik'}))
+    }
+    else{
+      FetchCompanyName(firmaId)
+      setLoggedInUser(prevUser => ({...prevUser, type: 'employee'}))
+    }
+  })
+}
+
+const FetchCompanyName = (firmaId) => {
+  axios.get(`http://127.0.0.1:8000/auth/firma/${firmaId}`)
+  .then(function (response) {
+    setLoggedInUser(prevUser => ({...prevUser, company: `${response.data.nazwaFirmy}`}))
+    localStorage.setItem('nazwaFirmy', response.data.nazwaFirmy)
+  }).catch(function(error){
+  })
+  .then(function () {
+    // always executed
+  });
+}
 
   const handleSignOut = () => {
     axios.post('http://127.0.0.1:8000/auth/token/logout/',localStorage.getItem('token'),{
@@ -30,7 +71,7 @@ const App = () => {
     })
     .then(function (response) {
       localStorage.clear();
-      setLoggedInUser(false)
+      setLoggedInUser({type: null, company: null})
     })
     .catch(function (error) {
       console.log(error);
@@ -39,7 +80,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Nav signOut={handleSignOut} />
+      <Nav signOut={handleSignOut} companyName={loggedInUser.company}/>
       {localStorage.getItem("token") === null ? <LoginForm login={handleSignIn}/> : <LoggedInMainPage />}
     </div>
   );

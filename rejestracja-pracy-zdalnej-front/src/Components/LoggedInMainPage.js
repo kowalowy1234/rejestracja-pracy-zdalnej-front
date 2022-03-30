@@ -5,11 +5,9 @@ const LoggedInMainPage = () => {
 
   if (localStorage.getItem('admin'))
     return(
-      <Router>
         <div className="loggedIn">
           <h1>Zalogowano jako admin</h1>
         </div>
-      </Router>
     )
   if (localStorage.getItem('kierownik'))
     return (

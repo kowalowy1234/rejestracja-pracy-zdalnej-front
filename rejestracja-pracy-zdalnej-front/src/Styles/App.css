@@ -50,19 +50,31 @@ nav div {
 }
 
 nav ul > li {
-  
+  border-left: 1px solid rgb(169, 247, 247);
+  transition: 500ms;
+}
+
+nav ul > li:first-child {
+  border: none;
 }
 
 nav a {
+  color: #0814bd;
   padding: 0.5rem 0.75rem;;
   display: block;
-  transition: 500ms;
-  border-radius: 4px;
   text-decoration: none;
 }
 
-nav a:hover {
+nav li:hover {
   background-color: rgb(180, 255, 255);
+}
+
+nav li:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+nav li:first-child {
+  border-radius: 4px 0 0 4px;
 }
 
 

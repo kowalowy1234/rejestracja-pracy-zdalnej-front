@@ -15,9 +15,7 @@ const Links = () => {
   
   const employeeLinks =       
     <ul>
-      <li><a href=''>Employee 1</a></li>
-      <li><a href=''>Employee 2</a></li>
-      <li><a href=''>Employee 3</a></li>       
+      <li><a href=''>Ekran pracy zdalnej</a></li>  
     </ul>
 
   const adminLinks =
@@ -29,9 +27,8 @@ const Links = () => {
 
   const  managerLinks =    
       <ul>
-        <li><a href=''>Manager 1</a></li>
-        <li><a href=''>Manager 2</a></li>
-        <li><a href=''>Manager 3</a></li>       
+        <li><a href=''>Ekran pracy zdalnej</a></li>
+        <li><a href=''>Wyznacz pracę zdalną</a></li>   
       </ul>
 
   const links = admin ? adminLinks : (kierownik ? managerLinks : (token ? employeeLinks : null))
