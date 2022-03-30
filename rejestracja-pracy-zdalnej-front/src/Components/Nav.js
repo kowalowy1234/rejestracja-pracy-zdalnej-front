@@ -14,17 +14,20 @@ const Nav = (props) => {
   const [userType, setUserType] = useState(null)
 
   const signOutButton =
+    <div style={{textAlign: 'right'}}>
       <Button 
         label="Wyloguj"
         onClick={handleSignOut}
         className='sign-out-button'
-      />;
+      />
+    </div>
 
   // const Links = admin ? <AdminLinks /> : (manager ? <ManagerLinks /> : (loggedInUser ? <EmployeeLinks /> : null))
   return (
     <nav>
       {loggedInUser && <NavLinks />}
       {!loggedInUser && <h1>Rejestracja pracy zdalnej</h1>}
+      {loggedInUser && <h2>Firma: {localStorage.getItem('nazwaFirmy')}</h2>}
       {loggedInUser && signOutButton}
     </nav>
   );

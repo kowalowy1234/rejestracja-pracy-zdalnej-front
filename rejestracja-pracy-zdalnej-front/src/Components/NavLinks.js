@@ -1,5 +1,11 @@
 import { useEffect, useState } from 'react';
 import '../Styles/App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const Links = () => {
 
@@ -9,22 +15,23 @@ const Links = () => {
   
   const employeeLinks =       
     <ul>
-      <li>Employee 1</li>
-      <li>Employee 2</li>
-      <li>Employee 3</li>       
+      <li><a href=''>Employee 1</a></li>
+      <li><a href=''>Employee 2</a></li>
+      <li><a href=''>Employee 3</a></li>       
     </ul>
 
-  const adminLinks =    
-      <ul>
-        <li>Admin 1</li>
-        <li>Admin 2</li>
-        <li>Admin 3</li>       
-      </ul>
+  const adminLinks =
+      <Router>
+        <ul>
+          <li><Link to="/dodaj_pracownika">Dodaj pracownika</Link></li>      
+        </ul>
+      </Router>
+
   const  managerLinks =    
       <ul>
-        <li>Manager 1</li>
-        <li>Manager 2</li>
-        <li>Manager 3</li>       
+        <li><a href=''>Manager 1</a></li>
+        <li><a href=''>Manager 2</a></li>
+        <li><a href=''>Manager 3</a></li>       
       </ul>
 
   const links = admin ? adminLinks : (kierownik ? managerLinks : (token ? employeeLinks : null))

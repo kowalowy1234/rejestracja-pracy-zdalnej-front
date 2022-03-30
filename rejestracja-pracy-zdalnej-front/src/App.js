@@ -7,6 +7,12 @@ import Nav from './Components/Nav'
 import LoginForm from './Components/LoginForm'
 import LoggedInMainPage from './Components/LoggedInMainPage';
 import { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const App = () => {
 
@@ -14,7 +20,6 @@ const App = () => {
 
   const handleSignIn = () => {
     setLoggedInUser(true);
-    window.location.reload(false);
   }
 
   const handleSignOut = () => {
@@ -24,9 +29,7 @@ const App = () => {
       },
     })
     .then(function (response) {
-      localStorage.removeItem('token')
-      localStorage.removeItem('kierownik')
-      localStorage.removeItem('admin')
+      localStorage.clear();
       setLoggedInUser(false)
     })
     .catch(function (error) {

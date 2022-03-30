@@ -30,7 +30,7 @@ const LoginForm = (props) => {
     })
     .then(function (response) {
       const token = response.data.auth_token
-      FetchUserType(token)
+      FetchUserData(token)
       localStorage.setItem('token', token)
       props.login()
     })
@@ -40,22 +40,37 @@ const LoginForm = (props) => {
     });
   }
 
-  const FetchUserType = (token) => {
+  const FetchUserData = (token) => {
       axios.get(`http://127.0.0.1:8000/auth/users/me/`,{
       headers: {
         'Authorization': `Token ${token}`
       }
     })
     .then(function (response) {
-      console.log(response.data.is_superuser);
-      console.log(response.data.is_staff);
+      const firmaId = response.data.firma;
       if(response.data.is_superuser)
-        localStorage.setItem('admin', response.data.is_superuser)
+        localStorage.setItem('admin', response.data.is_superuser);
       else if(response.data.is_staff)
-        localStorage.setItem('kierownik', response.data.is_staff)
+        localStorage.setItem('kierownik', response.data.is_staff);
+      localStorage.setItem('firmaId', response.data.firma);
+      FetchCompanyName(firmaId);
     })
     .catch(function (error) {
       // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+  }
+
+  const FetchCompanyName = (firmaId) => {
+    console.log('fetchcompanyname')
+    axios.get(`http://127.0.0.1:8000/auth/firma/${firmaId}`)
+    .then(function (response) {
+      localStorage.setItem('nazwaFirmy', response.data.nazwaFirmy);
+      window.location.reload(false);
+    }).catch(function(error){
       console.log(error);
     })
     .then(function () {
