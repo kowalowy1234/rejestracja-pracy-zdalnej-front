@@ -5,7 +5,7 @@ import NavLinks from './NavLinks'
 
 const Nav = (props) => {
 
-  const loggedInUser = localStorage.getItem('token');
+  const loggedInUser = sessionStorage.getItem('token');
 
   const handleSignOut = () =>{
     props.signOut();
@@ -27,7 +27,7 @@ const Nav = (props) => {
     <nav>
       {loggedInUser && <NavLinks />}
       {!loggedInUser && <h1>Rejestracja pracy zdalnej</h1>}
-      {loggedInUser && <h2>Firma: {props.companyName || localStorage.getItem('nazwaFirmy')}</h2>}
+      {loggedInUser && <h2>Firma: {props.companyName || sessionStorage.getItem('nazwaFirmy')}</h2>}
       {loggedInUser && signOutButton}
     </nav>
   );

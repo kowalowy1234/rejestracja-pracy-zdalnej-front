@@ -31,7 +31,7 @@ const LoginForm = (props) => {
     .then(function (response) {
       const token = response.data.auth_token
       // FetchUserData(token)
-      localStorage.setItem('token', token)
+      sessionStorage.setItem('token', token)
       props.login()
     })
     .catch(function (error) {
