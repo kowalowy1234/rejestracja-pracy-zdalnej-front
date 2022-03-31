@@ -3,13 +3,13 @@ import '../Styles/App.css';
 
 const LoggedInMainPage = () => {
 
-  if (localStorage.getItem('admin'))
+  if (sessionStorage.getItem('admin'))
     return(
         <div className="loggedIn">
           <h1>Zalogowano jako admin</h1>
         </div>
     )
-  if (localStorage.getItem('kierownik'))
+  if (sessionStorage.getItem('kierownik'))
     return (
       <div className="loggedIn">
         <h2>Zalogowano jako kierownik</h2>

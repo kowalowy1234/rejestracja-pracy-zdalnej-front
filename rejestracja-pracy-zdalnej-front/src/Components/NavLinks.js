@@ -9,9 +9,9 @@ import {
 
 const Links = () => {
 
-  const token = localStorage.getItem('token')
-  const admin = localStorage.getItem('admin')
-  const kierownik = localStorage.getItem('kierownik')
+  const token = sessionStorage.getItem('token')
+  const admin = sessionStorage.getItem('admin')
+  const kierownik = sessionStorage.getItem('kierownik')
   
   const employeeLinks =       
     <ul>
