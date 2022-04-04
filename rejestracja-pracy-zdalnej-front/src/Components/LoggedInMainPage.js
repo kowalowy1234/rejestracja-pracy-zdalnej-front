@@ -5,16 +5,15 @@ import AssignRemoteWork from './LoggedInScreens/AssignRemoteWork';
 import MainPage from './LoggedInScreens/MainPage';
 import RemoteWork from './LoggedInScreens/RemoteWork';
 import Stats from './LoggedInScreens/Stats';
+import Profile from './Profile';
 
-const LoggedInMainPage = () => {
-
-  const company = sessionStorage.getItem('nazwaFirmy')
-
+const LoggedInMainPage = (props) => {
+  
   if (sessionStorage.getItem('admin'))
     return(
         <div className="loggedIn">
-          <h1>Zalogowano jako administrator</h1>
-          <h2>Firma: {company}</h2>
+          {/* <Profile type='administrator' company={props.companyName}/> */}
+          <div></div>
           <Routes>
             <Route path="*" element={<MainPage />} />
             <Route exact path="/" element={<MainPage />} />
@@ -26,8 +25,8 @@ const LoggedInMainPage = () => {
   if (sessionStorage.getItem('kierownik'))
     return (
       <div className="loggedIn">
-        <h2>Zalogowano jako kierownik</h2>
-        <h2>Firma: {company}</h2>
+        {/* <Profile type='kierownik' company={props.companyName}/> */}
+        <div></div>
         <Routes>
           <Route path="*" element={<MainPage />} />
           <Route exact path="/" element={<MainPage />} />
@@ -41,8 +40,8 @@ const LoggedInMainPage = () => {
 
   return (
     <div className="loggedIn">
-      <h2>Zalogowano jako pracownik</h2>
-      <h2>Firma: {company}</h2>
+      {/* <Profile type='pracownik' company={props.companyName}/> */}
+      <div></div>
       <Routes>
         <Route path="*" element={<MainPage />} />
         <Route exact path="/" element={<MainPage />} />

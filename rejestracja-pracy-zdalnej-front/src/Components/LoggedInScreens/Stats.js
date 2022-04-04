@@ -2,7 +2,9 @@
 
 const Stats = () => {
   return (
-    <h1>Statystyki</h1>
+    <div className="screen-container">
+      <h1>Statystyki</h1>
+    </div>
   )
 }
 
