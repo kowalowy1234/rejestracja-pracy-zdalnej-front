@@ -7,18 +7,10 @@ import Nav from './Components/Nav'
 import LoginForm from './Components/LoginForm'
 import LoggedInMainPage from './Components/LoggedInMainPage';
 import { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 
 const App = () => {
 
   const [loggedInUser, setLoggedInUser] = useState({type: null, company: null})
-
-  console.log(loggedInUser)
 
   const handleSignIn = () => {
     FetchUserData(sessionStorage.getItem('token'))
@@ -33,7 +25,6 @@ const App = () => {
   })
   .then(function (response) {
     const firmaId = Number(response.data.firma);
-    console.log(firmaId);
     if(response.data.is_superuser){
       sessionStorage.setItem('admin', true);
       FetchCompanyName(firmaId)
@@ -81,7 +72,7 @@ const FetchCompanyName = (firmaId) => {
   return (
     <div className="App">
       <Nav signOut={handleSignOut} companyName={loggedInUser.company}/>
-      {sessionStorage.getItem("token") === null ? <LoginForm login={handleSignIn}/> : <LoggedInMainPage />}
+      {sessionStorage.getItem("token") === null ? <LoginForm login={handleSignIn}/> : <LoggedInMainPage companyName={loggedInUser.company}/>}
     </div>
   );
 }

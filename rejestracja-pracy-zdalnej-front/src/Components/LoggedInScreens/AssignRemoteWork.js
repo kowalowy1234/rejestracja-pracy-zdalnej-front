@@ -2,7 +2,9 @@
 
 const AssignRemoteWork = () => {
   return (
-    <h1>Ekran wyznaczania pracy zdalnej</h1>
+    <div className="screen-container">
+      <h1>Ekran wyznaczania pracy zdalnej</h1>
+    </div>
   )
 }
 

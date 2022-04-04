@@ -2,7 +2,9 @@
 
 const RemoteWork = () => {
   return (
-    <h1>Ekran pracy zdalnej</h1>
+    <div className="screen-container">
+      <h1>Ekran pracy zdalnej</h1>
+    </div>
   )
 }
 
