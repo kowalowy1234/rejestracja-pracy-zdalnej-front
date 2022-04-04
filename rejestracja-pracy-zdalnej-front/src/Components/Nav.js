@@ -15,7 +15,7 @@ const Nav = (props) => {
   const [userType, setUserType] = useState(null)
 
   const signOutButton =
-    <div style={{textAlign: 'right'}}>
+    <div style={{textAlign: 'right', marginRight: '10px'}}>
       <Link to='/'>
       <Button 
         label="Wyloguj"

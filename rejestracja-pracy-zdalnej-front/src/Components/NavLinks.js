@@ -1,21 +1,20 @@
-import { useEffect, useState } from 'react';
 import '../Styles/App.css';
 import {
-  BrowserRouter as Router,
-  Link
+  NavLink
 } from "react-router-dom";
 
 const Links = () => {
+
 
   const token = sessionStorage.getItem('token')
   const admin = sessionStorage.getItem('admin')
   const kierownik = sessionStorage.getItem('kierownik')
 
-  const mainScreen = <li><Link to='/'><i class='pi pi-home'></i>Ekran główny</Link></li>
-  const remoteWorkScreen = <li><Link to='ekran_pracy_zdalnej'><i class='pi pi-desktop'></i>Ekran pracy zdalnej</Link></li>
-  const addEmployeesScreen = <li><Link to="dodaj_pracownika"><i class='pi pi-user-plus'></i>Dodaj pracownika</Link></li>  
-  const assignRemoteWorkScreen = <li><Link to='wyznacz_prace'><i class='pi pi-calendar-plus'></i>Wyznacz pracę zdalną</Link></li>
-  const statsScreen = <li><Link to='statystyki'><i class='pi pi-chart-line'></i>Statystyki</Link></li> 
+  const mainScreen = <NavLink activeClassName='active' to='/'><li><i className='pi pi-home'></i>Ekran główny</li></NavLink>
+  const remoteWorkScreen = <NavLink activeClassName='active' to='ekran_pracy_zdalnej'><li><i className='pi pi-desktop'></i>Ekran pracy zdalnej</li></NavLink>
+  const addEmployeesScreen = <NavLink activeClassName='active' to="dodaj_pracownika"><li><i className='pi pi-user-plus'></i>Dodaj pracownika</li></NavLink> 
+  const assignRemoteWorkScreen = <NavLink activeClassName='active' to='wyznacz_prace'><li><i className='pi pi-calendar-plus'></i>Wyznacz pracę zdalną</li></NavLink>
+  const statsScreen = <NavLink activeClassName='active' to='statystyki'><li><i className='pi pi-chart-line'></i>Statystyki</li></NavLink>
   
   const employeeLinks =       
     <ul>
