@@ -75,12 +75,13 @@ nav ul a {
   transition: 500ms;
 }
 
+
 nav .pi {
   padding-right: 5px;
   font-size: 20px;
 }
 
-nav a:hover {
+nav > a:hover {
   background-color: rgb(180, 255, 255);
   border-top: 4px solid rgb(180, 255, 255);
   border-bottom: 4px solid #0814bd;
