@@ -1,76 +1,71 @@
 import React, {Component} from "react";
-import { Card } from "react-bootstrap";
+import { Card } from 'primereact/card';
 import EkranPracyZdalnej from "./icons/EkranPracyZdalnej.png";
 import EkranWyznaczaniaPracyZdalnej from "./icons/EkranWyznaczaniaPracyZdalnej.png";
 import Statystyki from "./icons/Statystyki.png";
 import DodajPracownika from "./icons/DodajPracownika.png";
 import { Link } from 'react-router-dom';
 
+
 const Cards = () => {
+
+  const header = (
+      <img alt="Card" src={EkranPracyZdalnej} />
+  );
+
   return (
-    <Link to='ekran_pracy_zdalnej'>
-    <Card style={{ width: '15rem', height: '20rem'}}>
-    <Card.Img variant="top" src={EkranPracyZdalnej} />
-    <Card.Body>
-      <Card.Title>Ekran pracy zdalnej</Card.Title>
-      <Card.Text>
-        Some quick example text to build on the card title and make up the bulk of
-        the card's content.
-      </Card.Text>
-    </Card.Body>
-    </Card>
-    </Link>
+        <Link to='ekran_pracy_zdalnej'>
+          <Card title="Ekran pracy zdalnej" header={header}>
+              <p className="m-0" style={{lineHeight: '1.5'}}>Lorem ipsum dolor sit amet</p>
+          </Card>
+        </Link>
   )
 }
 
 const Cards2 = () => {
+
+  const header = (
+      <img alt="Card" src={EkranWyznaczaniaPracyZdalnej} />
+  );
+
   return (
-    <Link to='wyznacz_prace'>
-    <Card style={{ width: '15rem', height: '20rem'}}>
-    <Card.Img variant="top" src={EkranWyznaczaniaPracyZdalnej} />
-    <Card.Body>
-      <Card.Title>Wyznacz pracę zdalną</Card.Title>
-      <Card.Text>
-        Some quick example text to build on the card title and make up the bulk of
-        the card's content.
-      </Card.Text>
-    </Card.Body>
-    </Card>
-    </Link>
+        <Link to='wyznacz_prace'>
+          <Card title="Ekran wyznaczania pracy zdalnej" header={header}>
+              <p className="m-0" style={{lineHeight: '1.5'}}>Lorem ipsum dolor sit amet</p>
+          </Card>
+        </Link>
   )
 }
 
 const Cards3 = () => {
+
+  const header = (
+      <img alt="Card" src={Statystyki} />
+  );
+
   return (
-    <Link to='statystyki'>
-    <Card style={{ width: '15rem', height: '20rem'}}>
-    <Card.Img variant="top" src={Statystyki} />
-    <Card.Body>
-      <Card.Title>Statystyki</Card.Title>
-      <Card.Text>
-        Some quick example text to build on the card title and make up the bulk of
-        the card's content.
-      </Card.Text>
-    </Card.Body>
-    </Card>
-    </Link>
+        <Link to='statystyki'>
+          <Card title="Statystyki" header={header}>
+              <p className="m-0" style={{lineHeight: '1.5'}}>Lorem ipsum dolor sit amet
+              Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+          </Card>
+        </Link>
   )
 }
 
 const Cards4 = () => {
+
+  const header = (
+      <img alt="Card" src={DodajPracownika} />
+  );
+
   return (
-    <Link to='dodaj_pracownika'>
-    <Card style={{ width: '15rem', height: '20rem'}}>
-    <Card.Img variant="top" src={DodajPracownika} />
-    <Card.Body>
-      <Card.Title>Dodaj pracownika</Card.Title>
-      <Card.Text>
-        Some quick example text to build on the card title and make up the bulk of
-        the card's content.
-      </Card.Text>
-    </Card.Body>
-    </Card>
-    </Link>
+        <Link to='dodaj_pracownika'>
+          <Card title="Dodaj pracownika" header={header}>
+              <p className="m-0" style={{lineHeight: '1.5'}}>Lorem ipsum dolor sit amet
+              Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet </p>
+          </Card>
+        </Link>
   )
 }
 
@@ -109,5 +104,6 @@ const  managerCards =
     </>
   )
 }
+
 
 export default MainPage
