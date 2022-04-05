@@ -206,13 +206,12 @@ div.p-card.p-component {
 }
 
 div.p-card {
-  box-shadow: 0 2px 10px #cfcfcf;
+  box-shadow: 0 2px 5px #b1b1b1;
   transition: 200ms;
 }
 
 div.p-card:hover {
-  /* box-shadow: 0 2px 5px #ffffff; */
-  border-bottom: 4px solid #0814bd;
+  box-shadow: 0 2px 15px #c3c3c3;
 }
 
 /* width */
