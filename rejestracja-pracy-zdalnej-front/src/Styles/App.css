@@ -63,7 +63,7 @@ a {
   transition: 500ms;
 }
 
-nav ul a {
+nav > ul a {
   color: #0814bd;
   height: 100%;
   display: flex;
@@ -81,7 +81,7 @@ nav .pi {
   font-size: 20px;
 }
 
-nav a:hover {
+nav ul a:hover {
   background-color: rgb(180, 255, 255);
   border-top: 4px solid rgb(180, 255, 255);
   border-bottom: 4px solid #0814bd;
