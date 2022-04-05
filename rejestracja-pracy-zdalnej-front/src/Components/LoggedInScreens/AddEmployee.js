@@ -93,7 +93,7 @@ const AddEmployee = () => {
           <InputText name='newUserPESEL' onChange={handleChange} placeholder="PESEL"/>
           <InputText name='newUserEmail' onChange={handleChange} placeholder="E-mail"/>
           <InputText name='newUserPhoneNumber' onChange={handleChange} placeholder="Numer telefonu"/>
-
+          <div></div>
           <Button label='Utwórz użytkownika' onClick={createUser}/>
 
         </form>

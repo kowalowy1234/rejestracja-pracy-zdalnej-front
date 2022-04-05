@@ -1,6 +1,7 @@
 
 body {
-  background-color: rgb(180, 255, 255);
+  /* background-color: rgb(180, 255, 255); */
+  background: linear-gradient(#F0FFFF,#B4FFFF,#F0FFFF);;
   font-weight: normal;
 }
 
@@ -148,7 +149,8 @@ nav ul a:hover {
 
 .screen-container form {
   display: grid;
-  grid-template-rows: repeat(7, 1fr);
+  /* grid-template-rows: repeat(8, 1fr); */
+  grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr 1fr 2fr;
   gap: 10px;
   width: 50%;
   align-items: center;
@@ -157,7 +159,7 @@ nav ul a:hover {
 .screen-container p {
   margin-bottom: 16px;
   color: rgb(104, 104, 104);
-  text-align: justify;
+  text-align: center;
   width: 50%;
   border-bottom: 2px solid rgb(233, 233, 233);
   border-top: 2px solid rgb(233, 233, 233);
@@ -183,14 +185,53 @@ nav ul a:hover {
   display: flex;
   align-content: center;
   flex-wrap: wrap;
+  margin-top: 50px;
+  gap: 20px;
 }
 
 
 .karta{
   margin: auto;
+  transform: 200ms;
 }
 
-div.p-card.p-component{
+div.p-card.p-component {
   width: 15rem;
-  height: 28rem;  
+  height: 22rem; 
+  border-radius: 10px; 
+}
+
+.karta img {
+  border-radius: 10px 10px 0 0;
+}
+
+div.p-card {
+  box-shadow: 0 2px 10px #cfcfcf;
+  transition: 200ms;
+}
+
+div.p-card:hover {
+  /* box-shadow: 0 2px 5px #ffffff; */
+  border-bottom: 4px solid #0814bd;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: #b6b6b6; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #929292; 
 }
