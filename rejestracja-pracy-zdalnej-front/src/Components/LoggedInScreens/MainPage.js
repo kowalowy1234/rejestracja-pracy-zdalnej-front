@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import { Card } from 'primereact/card';
 import EkranPracyZdalnej from "./icons/EkranPracyZdalnej.png";
 import EkranWyznaczaniaPracyZdalnej from "./icons/EkranWyznaczaniaPracyZdalnej.png";

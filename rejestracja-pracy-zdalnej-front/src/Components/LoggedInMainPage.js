@@ -5,7 +5,6 @@ import AssignRemoteWork from './LoggedInScreens/AssignRemoteWork';
 import MainPage from './LoggedInScreens/MainPage';
 import RemoteWork from './LoggedInScreens/RemoteWork';
 import Stats from './LoggedInScreens/Stats';
-import Profile from './Profile';
 
 const LoggedInMainPage = (props) => {
   
@@ -17,7 +16,7 @@ const LoggedInMainPage = (props) => {
           <Routes>
             <Route path="*" element={<MainPage />} />
             <Route exact path="/" element={<MainPage />} />
-            <Route exact path="dodaj_pracownika" element={<AddEmployee />} />
+            <Route exact path="dodaj_pracownika" element={<AddEmployee companyId={sessionStorage.getItem('companyId')}/>} />
           </Routes>
         </div>
     )
