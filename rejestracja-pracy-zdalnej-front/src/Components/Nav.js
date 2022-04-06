@@ -1,6 +1,5 @@
 import '../Styles/App.css';
 import { Button } from 'primereact/button';
-import { useEffect, useState } from 'react';
 import NavLinks from './NavLinks'
 import { Link } from 'react-router-dom';
 
@@ -11,8 +10,6 @@ const Nav = (props) => {
   const handleSignOut = () =>{
     props.signOut();
   }
-
-  const [userType, setUserType] = useState(null)
 
   const signOutButton =
     <div style={{textAlign: 'right', marginRight: '10px'}}>

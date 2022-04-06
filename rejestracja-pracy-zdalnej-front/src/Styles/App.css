@@ -148,15 +148,20 @@ nav ul a:hover {
 }
 
 .screen-container form {
-  display: grid;
-  /* grid-template-rows: repeat(8, 1fr); */
-  grid-template-rows: 2fr 2fr 2fr 2fr 2fr 2fr 1fr 2fr;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   width: 50%;
-  align-items: center;
+  align-items: stretch;
 }
 
-.screen-container p {
+.screen-container form > p {
+  margin-top: 0;
+  align-self: flex-start;
+  color: red;
+}
+
+.screen-container > p {
   margin-bottom: 16px;
   color: rgb(104, 104, 104);
   text-align: center;

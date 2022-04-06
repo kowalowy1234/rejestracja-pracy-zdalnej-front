@@ -25,6 +25,7 @@ const App = () => {
   })
   .then(function (response) {
     const firmaId = Number(response.data.firma);
+    sessionStorage.setItem('companyId', response.data.firma);
     if(response.data.is_superuser){
       sessionStorage.setItem('admin', true);
       FetchCompanyName(firmaId)
