@@ -6,7 +6,8 @@ import axios from 'axios';
 
 // class Dane extends React.Component {
 //   state = {
-//     persons: []
+//     name: '',
+//     vorname: ''
 //   }
 
 //   componentDidMount() {
