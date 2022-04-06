@@ -16,7 +16,7 @@ const Cards = () => {
   return (
         <Link to='ekran_pracy_zdalnej'>
           <Card title="Ekran pracy zdalnej" header={header}>
-              <p className="m-0" style={{lineHeight: '1.5'}}>Lorem ipsum dolor sit amet</p>
+              <p className="m-0" style={{lineHeight: '1.2'}}>Przejdź do panelu zarządzania swoją pracą zdalną</p>
           </Card>
         </Link>
   )
@@ -31,7 +31,7 @@ const Cards2 = () => {
   return (
         <Link to='wyznacz_prace'>
           <Card title="Ekran wyznaczania pracy zdalnej" header={header}>
-              <p className="m-0" style={{lineHeight: '1.5'}}>Lorem ipsum dolor sit amet</p>
+              <p className="m-0" style={{lineHeight: '1.2'}}>Przejdź do panelu wyznaczania pracy zdalnej pracownikom</p>
           </Card>
         </Link>
   )
@@ -46,8 +46,7 @@ const Cards3 = () => {
   return (
         <Link to='statystyki'>
           <Card title="Statystyki" header={header}>
-              <p className="m-0" style={{lineHeight: '1.5'}}>Lorem ipsum dolor sit amet
-              Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+              <p className="m-0" style={{lineHeight: '1.2'}}>Przejdź do panelu wykresów i statystyk pracy zdalnej</p>
           </Card>
         </Link>
   )
@@ -62,8 +61,7 @@ const Cards4 = () => {
   return (
         <Link to='dodaj_pracownika'>
           <Card title="Dodaj pracownika" header={header}>
-              <p className="m-0" style={{lineHeight: '1.5'}}>Lorem ipsum dolor sit amet
-              Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet </p>
+              <p className="m-0" style={{lineHeight: '1.2'}}>Przejdź do panelu dodawania pracowników i ich uprawnień</p>
           </Card>
         </Link>
   )
