@@ -237,7 +237,7 @@ div.p-card:hover {
 
 
 .podkont{
-  margin-left: -70%;
+  margin-left: -60%;
 }
 
 .kalendarz{
@@ -262,5 +262,11 @@ div.p-card-body{
 p.m-0{
   padding-left: 24px;
   padding-right: 24px;
+}
+
+
+.licznik{
+  margin-top: -70%;
+  margin-left: 65%;
 }
 
