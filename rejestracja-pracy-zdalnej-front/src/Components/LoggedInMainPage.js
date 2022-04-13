@@ -32,7 +32,7 @@ const LoggedInMainPage = (props) => {
           <Route exact path="dodaj_pracownika" element={<MainPage />} />
           <Route exact path="ekran_pracy_zdalnej" element={<RemoteWork />} />
           <Route exact path="wyznacz_prace" element={<AssignRemoteWork />} />
-          <Route exact path="statystyki" element={<Stats />} />
+          <Route exact path="statystyki" element={<Stats token={sessionStorage.getItem('token')} companyId={sessionStorage.getItem('companyId')}/>} />
         </Routes>
       </div>
     );

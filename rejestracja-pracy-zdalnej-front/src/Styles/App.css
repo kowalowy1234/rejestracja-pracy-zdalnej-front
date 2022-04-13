@@ -239,3 +239,14 @@ div.p-card:hover {
 ::-webkit-scrollbar-thumb:hover {
   background: #929292; 
 }
+
+.stats-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stats-header h3 {
+  margin-right: 20px;
+}
