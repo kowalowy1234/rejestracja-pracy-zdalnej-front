@@ -12,7 +12,7 @@ const DanePracownika = () => {
   const token = sessionStorage.getItem('token')
   const [dane, setImie] = useState({imie: null, nazwisko: null,})
 
-
+    //pobranie danych o aktualnie zalogowanym użytkowniku
     React.useEffect(() => {
     axios.get(endpoints.currentUser, {
       headers: {
@@ -35,7 +35,7 @@ const DanePracownika = () => {
 }
 
 const Praca = () => {
-
+  //pobranie danych o pracy aktualnie zalogowanego użytkownika
   const [dane, setPraca] = useState(null);
   React.useEffect(() => {
     axios.get(endpoints.remoteWork)
@@ -47,17 +47,29 @@ const Praca = () => {
   },[]);
   const id = sessionStorage.getItem('idPracownika')
   console.log(dane)
-  
   if (!dane) return null;
-  const listaRekordow = dane.map((rekord) => (
-    rekord.idPracownika === Number(id) ?
-    (<p><b>Remaining: {rekord.minutyPozostalo}</b></p>) : null
-    ))
-    console.log(listaRekordow)
+  //petla do sprawdzenia i wyciagniecia minut z id aktualnie zalogowanego uzytkownika
+  //people.filter(person => person.age < 60).map(filteredPerson => (
+  const listaRekordow = dane.filter(rekord => rekord.idPracownika === Number(id) && 
+  Number(rekord.minutyPozostalo)>0).map(rekordFiltered => (
+    rekordFiltered.minutyPozostalo
+  ))
+
+
+  //   if(rekord.idPracownika === Number(id) && Number(rekord.minutyPozostalo)>0){
+  //     return rekord.minutyPozostalo}
+  // })
+
+
+
+  sessionStorage.setItem('minutyNaStarcie', listaRekordow)
+  console.log(sessionStorage.getItem('minutyPoSave'))
+  const sprawdzanie = listaRekordow - sessionStorage.getItem('minutyPoSave')
+  console.log(sprawdzanie)
     return (
     <>
     <div className='remaining'>
-          {listaRekordow[0]}
+      <p><b>Remaining:  {sprawdzanie}</b></p>
     </div>
     </>
   )
@@ -111,38 +123,89 @@ const Calendarz = () => {
 }
 
 const Licznik = () => {
-
-  const [counter, setCounter] = useState(60);
-  const [value1, setValue1] = useState(1);
-  const [disabledIncrementBtn, setDisabledIncrementBtn] = useState(false);
-  const [disabledDecrementBtn, setDisabledDecrementBtn] = useState(true);
-
+  const id = sessionStorage.getItem('idPracownika')
+  const [value1, setValue1] = useState(0);
+  const [counter, setCounter] = useState(0);
+  const [disabledStartBtn, setDisabledStartBtn] = useState(false);
+  const [disabledStopBtn, setDisabledStopBtn] = useState(true);
+  const [isActive, setIsActive] = useState(false);
+  const [disabledSaveBtn, setDisabledSaveBtn] = useState(true);
+  const [userRemoteWorkData, setRemoteWorkData] = useState({minutes: ''})
+  const minutyNaStarcie = sessionStorage.getItem('minutyNaStarcie')
+  function toggle() {
+    setIsActive(!isActive);
+  }
+  //odmierzanie czasu
   React.useEffect(() => {
-    const timer =
-      value1 > 0 && setInterval(() => setValue1(value1 + 1), 1000);
+    let timer = null;
+    if (isActive) {
+    timer =
+      counter >= 0 && setInterval(() => setCounter(counter + 1), 1000);}
+    else if(!isActive && counter!==0){
+      clearInterval(timer);
+    }
     return () => clearInterval(timer);
-  }, [counter]);
+  }, [isActive, counter]);
 
-  const increment = () => {
-    const value = value1 + 1;
+  //funkcja startująca licznik
+  const start = () => {
+    setIsActive(true)
+    const value = counter;
+    setCounter(value);
+    setDisabledStartBtn(true);
+    setDisabledStopBtn(false);
+    setDisabledSaveBtn(true);
+  }
+//funkcja zatrzymująca licznik
+const stop = () => {
+    setIsActive(false);
+    const value = counter;
     setValue1(value);
-    setDisabledIncrementBtn(value === 100);
-    setDisabledDecrementBtn(false);
+    setDisabledStopBtn(value === 0);
+    setDisabledStopBtn(true);
+    setDisabledStartBtn(false);
+    setDisabledSaveBtn(false);
+    setRemoteWorkData( () => ({
+      minutes: value}))
   }
 
-const decrement = () => {
-    const value = value1 - 1;
-    setValue1(value);
-    setDisabledIncrementBtn(false);
-    setDisabledDecrementBtn(value === 0);
+  const updateMinutes = (minutyUpdate) => {
+    axios.put(`${endpoints.remoteWork}/${id}`, {
+      idPracownika: id, 
+      minutyPozostalo: minutyUpdate
+    })
   }
+  //funkcja do zapisywania przepracowanego czasu
+  const dzis = new Date();
+  console.log(dzis)
+  const timeWorking = () => {
+    axios.post(endpoints.remoteWorkRecord, {
+      idPracownika: id,
+      data: dzis,
+      przepracowaneMinuty: userRemoteWorkData.minutes
+    }).then(function (response) {
+      console.log(response)
+    })
+  }
+
+  const save = () => {
+    const minutyUpdate = minutyNaStarcie - userRemoteWorkData.minutes;
+    console.log(minutyUpdate)
+    sessionStorage.setItem('minutyPoSave', userRemoteWorkData.minutes)
+    console.log(sessionStorage.getItem('minutyPoSave'))
+    timeWorking()
+    updateMinutes(minutyUpdate)
+    setDisabledSaveBtn(true);
+  }
+
 
   return (
     <div className="licznik">
-          <Knob value={value1} size={150} readOnly />
-          <Button label="Increment" onClick={increment} className="mr-2" disabled={disabledIncrementBtn} />
-          <Button label="Decrement" onClick={decrement} disabled={disabledDecrementBtn} />
-          Countdown: {counter}
+          <Knob value={counter} size={150} max={minutyNaStarcie} readOnly />
+          <Button label="Zacznij pracę" onClick={start} className="mr-2" disabled={disabledStartBtn} />
+          <Button label="Zatrzymaj pracę" onClick={stop} disabled={disabledStopBtn} />
+          <Button label="Zapisz pracę" onClick={save} disabled={disabledSaveBtn} />
+          
     </div>
   )
 }
