@@ -265,8 +265,52 @@ p.m-0{
 }
 
 
-.licznik{
-  margin-top: -70%;
-  margin-left: 65%;
+.p-knob-text{
+  font-size: 1.1rem !important;
 }
 
+.p-button.p-component{
+  margin: 3px !important;
+}
+
+.kontenerDoPracy{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.pracaA{
+  box-shadow: 0 2px 5px #b1b1b1;
+  flex:1;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 500px;
+  height: 100%;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+.pracaB{
+  box-shadow: 0 2px 5px #b1b1b1;
+  flex:1;
+  margin-left: 25px;
+  margin-right: 25px;
+  height: 100%;
+}
+
+.p-datepicker table td.p-datepicker-today > span {
+  background: #007bff!important;
+  color: #ffffff!important;
+}
+
+
+.p-datepicker-group{
+  border: 0;
+  border-style: none;
+  width: 500px;
+}
+
+.p-datepicker-calendar{
+  border: 0;
+  border-style: none;
+}
