@@ -1,20 +1,41 @@
+/* eslint-disable no-loop-func */
 import { MultiSelect } from 'primereact/multiselect';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import endpoints from '../../endpoints';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
 import { InputNumber } from 'primereact/inputnumber';
+import { Toast } from 'primereact/toast';
 
 const AssignRemoteWork = (props) => {
 
-  const [users, setUsers] = useState([])
+  const toastWarning = useRef(null);
+  const toastSuccess = useRef(null);
+  const toastError = useRef(null);
+  const toastBC = useRef(null);
 
-  const [allUsers, setAllUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
+  const [allUsers, setAllUsers] = useState([]);
+
+  function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+  };  
+  
   const today = new Date();
   const tomorrow = new Date();
-  today.setDate(today.getDate() + 1)
+  today.setDate(today.getDate() + 1);
   tomorrow.setDate(tomorrow.getDate() + 2);
 
   const [selectedDates, setSelectedDates] = useState([today, tomorrow]);
@@ -51,10 +72,89 @@ const AssignRemoteWork = (props) => {
       console.log(error);
     })
 
-  }, [])
+  }, []);
+
+  const sendRequest = () => {
+
+    const begin = formatDate(selectedDates[0]);
+    const end = formatDate(selectedDates[selectedDates.length-1]);
+
+    if (users.length === 0) {
+      showWarning();
+      return null;
+    }
+
+    for(let i = 0; i < users.length; i++) {
+      axios.put(`${endpoints.remoteWork}${users[i]}`, {
+        idPracownika: users[i],
+        dataRozpoczecia: begin,
+        dataZakonczenia: end,
+        minutyStart: (selectedTime.hours * 60) + selectedTime.minutes,
+        minutyPozostalo: (selectedTime.hours * 60) + selectedTime.minutes,
+        zlecajacy: '3',
+      }).then(() => {
+        showSuccess();
+      }).catch(() => {
+        showError();
+      });
+    };
+  }
+
+  const clearForm = () => {
+    setUsers([]);
+    setSelectedDates([today, tomorrow]);
+    setSelectedTime({hours: 0, minutes: 1});
+  }
+
+  const clearToasts = () => {
+    toastBC.current.clear();
+  }
+
+  const showWarning = () => {
+    clearToasts();
+    toastWarning.current.show({life: 5000, severity: 'warn', summary: 'Uwaga.', detail: 'Nie wybrano żadnego pracownika.'});
+  }
+
+  const showSuccess = () => {
+    clearToasts();
+    toastSuccess.current.clear();
+    toastSuccess.current.show({life: 5000, severity: 'success', summary: 'Sukces.', detail: 'Pomyślnie przydzielono pracę.'});
+  }
+
+  const showError = () => {
+    clearToasts();
+    toastError.current.clear();
+    toastError.current.show({life: 5000, severity: 'error', summary: 'Błąd.', detail: 'Coś poszło nie tak podczas wysyłania danych.'});
+  }
+
+  const showConfirm = () => {
+    toastBC.current.show({ severity: 'info', sticky: true, content: (
+        <div className="flex flex-column" style={{flex: '1'}}>
+            <div className="text-center">
+                <i className="pi pi-exclamation-triangle" style={{fontSize: '3rem'}}></i>
+                <h4>Wyznaczyć pracę wybranym pracownikom?</h4>
+                <p>Potwierdź aby kontynuować.</p>
+            </div>
+            <div style={{display: 'flex', width: '100%', justifyContent:'space-between', gap: '25px'}}>
+                <div style={{flex: 1,}}>
+                    <Button style={{width: '100%'}} type="button" label="Potwierdź" className="p-button-primary" onClick={sendRequest}/>
+                </div>
+                <div style={{flex: 1,}}>
+                    <Button style={{width: '100%'}} type="button" label="Anuluj" className="p-button-danger" onClick={clearToasts}/>
+                </div>
+            </div>
+        </div>
+    ) });
+  }
+
+
 
   return (
     <div className="screen-container">
+      <Toast ref={toastWarning} position="bottom-center" />
+      <Toast ref={toastSuccess} position="bottom-center" />
+      <Toast ref={toastError} position="bottom-center" />
+      <Toast ref={toastBC} position="bottom-center" />
       <h2 style={{marginBottom: '20px'}}><i className='pi pi-desktop' style={{fontSize: '20px', marginRight: '10px'}}></i>Ekran wyznaczania pracy zdalnej</h2>
       <hr style={{width: '100%', backgroundColor: 'rgb(233, 233, 233)', border: '1px solid rgb(233, 233, 233)', marginBottom: '20px'}}></hr>
       {/* Lista pracowników */}
@@ -143,11 +243,13 @@ const AssignRemoteWork = (props) => {
             <Button 
               label='Zatwierdź'
               icon="pi pi-check"
+              onClick={showConfirm}
               />
             <Button 
               className='p-button-danger'
-              label='Anuluj'
+              label='Wyczyść formularz'
               icon="pi pi-times"
+              onClick={clearForm}
               />
           </div>
         </div>
