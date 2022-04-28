@@ -24,10 +24,9 @@ const DanePracownika = () => {
   }, []);
   if (!dane) return null;
   return (
-    <div className='name'>
-      <i className="pi pi-user" style={{'fontSize': '2em'}}>&nbsp;{dane.first_name} {dane.last_name}</i>
-      <Praca idPracownika={dane.id}/>
-    </div>
+    <>
+    <Praca idPracownika={dane.id} imie={dane.first_name} nazwisko={dane.last_name}/>
+    </>
   )
 }
 
@@ -58,37 +57,35 @@ const Praca = (props) => {
 
   const godzinaWyswietlana = Math.floor(dane.minutyPozostalo/60)
   const minutaWyswietlana = dane.minutyPozostalo%60
-  const imie = sessionStorage.getItem('imie')
     return (
     <>
-    <div className='remaining'>
-      <p><b>Pozostało: {godzinaWyswietlana} godz i {minutaWyswietlana} min</b></p>
+    <div className='kontenerDoPracy'>
+      <div className='pracaA'>
+        <div className='name'>
+        <i className="pi pi-user" style={{'fontSize': '2em'}}>&nbsp;{props.imie} {props.nazwisko}</i>
+        </div>
+        <div className='remaining'>
+        <p><b>Pozostało: {godzinaWyswietlana} godz i {minutaWyswietlana} min</b></p>
+        </div>
+        <Licznik srodek={czyWsrodku} id={props.idPracownika} minutyStart={dane.minutyPozostalo}/>
+      </div>
+      <div className='pracaA'>
+        <Calendarz dataRozpoczeciaPracy={dataRoz} dataZakonczeniaPracy={dataZak}/>
+      </div>
     </div>
-    <Licznik srodek={czyWsrodku} id={props.idPracownika} minutyStart={dane.minutyPozostalo}/>
     </>
   )
 } 
 
-// const Name = () => {
 
-//   return (
-//       <div className='name'>
-//           <i className="pi pi-user" style={{'fontSize': '2em'}}>&nbsp;<DanePracownika/></i>
-//       </div>
-//   )
-// }
+const Calendarz = (props) => {
 
-
-
-
-const Calendarz = () => {
-
-  const [date, setDate] = useState(null);
+  const selectedDates = [props.dataRozpoczeciaPracy, props.dataZakonczeniaPracy];
 
   return (
       <div>
-          <Calendar className='calendar' value={date} readOnlyInput
-           onChange={(e) => setDate(e.value)} inline showWeek />
+          <Calendar selectionMode="range" 
+              value={selectedDates} readOnlyInput inline showWeek />
       </div>
   );
 }
@@ -241,15 +238,10 @@ const RemoteWork = () => {
   return (
     <div className="screen-container">
       <h1>Ekran pracy zdalnej</h1>
-      <div className='kontenerDoPracy'>
-        <div className='pracaA'>
           <DanePracownika/>
-        </div>
         <div className='pracaB'>
-          <Calendarz/>
         </div>
       </div>
-    </div>
   )
 }
 
