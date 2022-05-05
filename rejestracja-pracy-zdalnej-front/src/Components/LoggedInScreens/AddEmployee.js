@@ -87,6 +87,14 @@ const AddEmployee = (props) => {
     });
   }
 
+  const turnModalOff = () => {
+    setCreatedUSer({
+      username_c: '',
+      password_c: '',
+      created: false,
+    });
+  }
+
   const  generatePassword = () => {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@#$%^&*0123456789"; 
 
@@ -198,7 +206,7 @@ const AddEmployee = (props) => {
 
           <Button label='Utwórz użytkownika' type="submit"/>
         </form>
-        {createdUser.created && <NewUserModal username={createdUser.username_c} password={createdUser.password_c}/>}
+        {createdUser.created && <NewUserModal toggle={turnModalOff} username={createdUser.username_c} password={createdUser.password_c}/>}
       </div>
   )
 }

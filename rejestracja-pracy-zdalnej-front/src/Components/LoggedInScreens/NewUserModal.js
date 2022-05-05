@@ -15,6 +15,7 @@ const NewUserModal = (props) => {
 
   const handleClose = () => {
     setOpen(false);
+    props.toggle();
   };
 
   return (
