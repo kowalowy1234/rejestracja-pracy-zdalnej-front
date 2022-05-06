@@ -300,3 +300,13 @@ div.p-card:hover {
 }
 
 /*  */
+
+.p-chart canvas {
+  width: 600px;
+  height: 350px;
+} 
+
+.stats-header h4 {
+  font-weight: 400;
+  margin-right: 20px;
+}

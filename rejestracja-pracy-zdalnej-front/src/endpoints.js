@@ -10,6 +10,7 @@ const endpoints = {
   logout: `${host}token/logout/`,
   currentUser: `${host}users/me/`,
   usersAndRegister: `${host}users/`,
+  workedMinutes: `${host}przepracowane-minuty/`,
 }
 
 export default endpoints;
