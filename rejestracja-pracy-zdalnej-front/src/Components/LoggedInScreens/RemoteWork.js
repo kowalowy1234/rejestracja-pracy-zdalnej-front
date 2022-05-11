@@ -6,6 +6,7 @@ import endpoints from '../../endpoints';
 import { Knob } from 'primereact/knob';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
+import { ToggleButton } from 'primereact/togglebutton';
 
 const DanePracownika = () => {
 
@@ -31,46 +32,65 @@ const DanePracownika = () => {
 }
 
 const Praca = (props) => {
+  const [checked, setChecked] = useState(false);
+  const dzis = new Date().toISOString().split('T')[0];
+  const toast = useRef(null);
+  const showSticky = () => {
+    toast.current.show({severity: 'warn', summary: 'Uwaga!', 
+    detail: 'Dzisiejsza data jest ostatnim dniem pracy zdalnej', sticky: true});
+}
   //pobranie danych o pracy aktualnie zalogowanego użytkownika
   const [dane, setPraca] = useState(null);
   React.useEffect(() => {
     axios.get(`${endpoints.remoteWork}/${props.idPracownika}`)
     .then(function (response) {
       setPraca(response.data);
+      if(response.data.dataZakonczenia==dzis) showSticky()
+      console.log(response.data.dataZakonczenia)
     }).catch(function(error){
       console.log(error);
     });
   },[]);
   if (!dane) return null;
-  let dataRoz = new Date(dane.dataRozpoczecia);
 
-  let dataZak = new Date(dane.dataZakonczenia);
-
-  const dzis = new Date() 
   let czyWsrodku = false
-  if(dzis>=dataRoz && dzis<=dataZak){
+  if(dzis>=dane.dataRozpoczecia && dzis<=dane.dataZakonczenia){
     czyWsrodku = true 
   } else {
     czyWsrodku = false 
   }
+  const toggleDaty = () => {
+
+  }
+  // if(dane.dataZakonczenia==dzienDzien){
+  //   return showSticky()
+  // } 
+
   console.log(czyWsrodku)
 
   const godzinaWyswietlana = Math.floor(dane.minutyPozostalo/60)
   const minutaWyswietlana = dane.minutyPozostalo%60
     return (
     <>
+    <Toast ref={toast} />
     <div className='kontenerDoPracy'>
       <div className='pracaA'>
         <div className='name'>
-        <i className="pi pi-user" style={{'fontSize': '2em'}}>&nbsp;{props.imie} {props.nazwisko}</i>
+        <i className="pi pi-user" style={{'fontSize': '1.5em'}}></i>&nbsp;{props.imie} {props.nazwisko}
         </div>
         <div className='remaining'>
         <p><b>Pozostało: {godzinaWyswietlana} godz i {minutaWyswietlana} min</b></p>
         </div>
         <Licznik srodek={czyWsrodku} id={props.idPracownika} minutyStart={dane.minutyPozostalo}/>
       </div>
-      <div className='pracaA'>
-        <Calendarz dataRozpoczeciaPracy={dataRoz} dataZakonczeniaPracy={dataZak}/>
+      <div>
+      <ToggleButton checked={checked} onChange={(e) => setChecked(e.value)} 
+      onLabel="Ukryj mój zakres pracy" offLabel="Pokaz mój zakres pracy" 
+      className="p-button-rounded p-button-info"/>
+      <div className='pracaB'>
+      Początek: {checked ? dane.dataRozpoczecia : '-'} <br/>
+      Koniec: {checked ? dane.dataZakonczenia : '-'}
+      </div>
       </div>
     </div>
     </>

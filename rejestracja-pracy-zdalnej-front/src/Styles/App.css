@@ -281,21 +281,15 @@ p.m-0{
 
 
 .pracaA{
-  box-shadow: 0 2px 5px #b1b1b1;
   flex:1;
   margin-left: 25px;
   margin-right: 25px;
   width: 500px;
   height: 100%;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
 }
 .pracaB{
-  box-shadow: 0 2px 5px #b1b1b1;
-  flex:1;
-  margin-left: 25px;
-  margin-right: 25px;
-  height: 100%;
+  margin-top: 15px;
+  font-size: larger;
 }
 
 .p-datepicker table td.p-datepicker-today > span {
@@ -313,4 +307,15 @@ p.m-0{
 .p-datepicker-calendar{
   border: 0;
   border-style: none;
+}
+
+.name{
+  font-size: 1.7em;
+}
+
+.remaining {
+  margin-left: 140px;
+  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: clip;
 }
