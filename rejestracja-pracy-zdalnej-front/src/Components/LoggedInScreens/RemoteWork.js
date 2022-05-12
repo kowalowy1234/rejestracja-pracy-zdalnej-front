@@ -35,6 +35,7 @@ const Praca = (props) => {
   const [checked, setChecked] = useState(false);
   const dzis = new Date().toISOString().split('T')[0];
   const toast = useRef(null);
+  const dataProbna = '2022-05-12'
   const showSticky = () => {
     toast.current.show({severity: 'warn', summary: 'Uwaga!', 
     detail: 'Dzisiejsza data jest ostatnim dniem pracy zdalnej', sticky: true});
