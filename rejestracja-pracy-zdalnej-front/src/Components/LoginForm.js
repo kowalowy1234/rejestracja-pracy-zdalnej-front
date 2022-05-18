@@ -4,6 +4,7 @@ import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Button } from 'primereact/button';
 import axios from 'axios';
+import endpoints from '../endpoints';
 
 const LoginForm = (props) => {
   
@@ -24,7 +25,7 @@ const LoginForm = (props) => {
   const HandleLogin = (event) => {
     event.preventDefault()
 
-    axios.post('http://127.0.0.1:8000/auth/token/login', {
+    axios.post(endpoints.login, {
       username: userData.username,
       password: userData.password
     })

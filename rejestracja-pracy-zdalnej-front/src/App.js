@@ -7,6 +7,7 @@ import Nav from './Components/Nav'
 import LoginForm from './Components/LoginForm'
 import LoggedInMainPage from './Components/LoggedInMainPage';
 import { useState } from 'react';
+import endpoints from './endpoints';
 
 const App = () => {
 
@@ -18,7 +19,7 @@ const App = () => {
   }
 
   const FetchUserData = (token) => {
-    axios.get(`http://127.0.0.1:8000/auth/users/me/`,{
+    axios.get(endpoints.currentUser,{
     headers: {
       'Authorization': `Token ${token}`
     }
@@ -44,7 +45,7 @@ const App = () => {
 }
 
 const FetchCompanyName = (firmaId) => {
-  axios.get(`http://127.0.0.1:8000/auth/firma/${firmaId}`)
+  axios.get(`${endpoints.company}${firmaId}`)
   .then(function (response) {
     setLoggedInUser(prevUser => ({...prevUser, company: `${response.data.nazwaFirmy}`}))
     sessionStorage.setItem('nazwaFirmy', response.data.nazwaFirmy)
@@ -56,7 +57,7 @@ const FetchCompanyName = (firmaId) => {
 }
 
   const handleSignOut = () => {
-    axios.post('http://127.0.0.1:8000/auth/token/logout/',sessionStorage.getItem('token'),{
+    axios.post(endpoints.logout ,sessionStorage.getItem('token'),{
       headers: {
         'Authorization': `Token ${sessionStorage.getItem('token')}`
       },
