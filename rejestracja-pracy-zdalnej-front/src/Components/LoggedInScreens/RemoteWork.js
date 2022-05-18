@@ -46,8 +46,7 @@ const Praca = (props) => {
     axios.get(`${endpoints.remoteWork}/${props.idPracownika}`)
     .then(function (response) {
       setPraca(response.data);
-      if(response.data.dataZakonczenia==dzis) showSticky()
-      console.log(response.data.dataZakonczenia)
+      if(response.data.dataZakonczenia==dzis && response.data.minutyStart!=0) showSticky()
     }).catch(function(error){
       console.log(error);
     });
@@ -55,19 +54,13 @@ const Praca = (props) => {
   if (!dane) return null;
 
   let czyWsrodku = false
-  if(dzis>=dane.dataRozpoczecia && dzis<=dane.dataZakonczenia){
+  if(dzis>=dane.dataRozpoczecia && dzis<=dane.dataZakonczenia && dane.minutyStart!=0){
     czyWsrodku = true 
   } else {
     czyWsrodku = false 
   }
-  const toggleDaty = () => {
 
-  }
-  // if(dane.dataZakonczenia==dzienDzien){
-  //   return showSticky()
-  // } 
 
-  console.log(czyWsrodku)
 
   const godzinaWyswietlana = Math.floor(dane.minutyPozostalo/60)
   const minutaWyswietlana = dane.minutyPozostalo%60
@@ -115,14 +108,6 @@ const Licznik = (props) => {
   const id = sessionStorage.getItem('idPracownika')
   const toast = useRef(null);
   let czyWSrodku = props.srodek
-  // 
-  // console.log(czyWSrodku)
-  // if (czyWSrodku==='true'){
-  //   kurdeNo=false
-  // }else{
-  //   kurdeNo=true
-  // }
-  // console.log(kurdeNo)
   const [value1, setValue1] = useState(0);
   let [counter, setCounter] = useState(0);
   let [minuta, setMinuta] = useState(0);
@@ -133,7 +118,6 @@ const Licznik = (props) => {
   const [disabledSaveBtn, setDisabledSaveBtn] = useState(true);
   const [userRemoteWorkData, setRemoteWorkData] = useState({minutes: ''})
   let minutyNaStarcie = props.minutyStart
-  console.log(minutyNaStarcie)
   const zapisanoPracę = () => {
     toast.current.show({severity:'success', summary: 'Zapisano pracę', 
     detail:'Praca pomyślnie zapisana', life: 3000});
@@ -194,7 +178,6 @@ const stop = () => {
     setRemoteWorkData( () => ({
       minutes: valueDoZapisu}))
   }
-  console.log(props.id)
   const updateMinutes = (minutyUpdate) => {
     axios.put(`${endpoints.remoteWork}/${props.id}`, {
       idPracownika: id, 
@@ -216,7 +199,6 @@ const stop = () => {
   const save = () => {
     zapisanoPracę()
     const minutyUpdate = minutyNaStarcie - userRemoteWorkData.minutes;
-    console.log(minutyUpdate)
     timeWorking()
     updateMinutes(minutyUpdate)
     setDisabledSaveBtn(true);
