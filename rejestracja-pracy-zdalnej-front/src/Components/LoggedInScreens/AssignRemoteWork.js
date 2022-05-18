@@ -155,7 +155,7 @@ const AssignRemoteWork = (props) => {
       <Toast ref={toastSuccess} position="bottom-center" />
       <Toast ref={toastError} position="bottom-center" />
       <Toast ref={toastBC} position="bottom-center" />
-      <h2 style={{marginBottom: '20px'}}><i className='pi pi-desktop' style={{fontSize: '20px', marginRight: '10px'}}></i>Ekran wyznaczania pracy zdalnej</h2>
+      <h2 style={{marginBottom: '20px'}}><i className='pi pi-calendar-plus' style={{fontSize: '20px', marginRight: '10px'}}></i>Ekran wyznaczania pracy zdalnej</h2>
       <hr style={{width: '100%', backgroundColor: 'rgb(233, 233, 233)', border: '1px solid rgb(233, 233, 233)', marginBottom: '20px'}}></hr>
       {/* Lista pracowników */}
       <div className='stats-header assign-header'>

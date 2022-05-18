@@ -53,6 +53,8 @@ const Stats = (props) => {
 
   return (
     <div className="screen-container">
+      <h2 style={{marginBottom: '20px'}}><i className='pi pi-chart-line' style={{fontSize: '20px', marginRight: '10px'}}></i>Ekran statystyk</h2>
+      <hr style={{width: '100%', backgroundColor: 'rgb(233, 233, 233)', border: '1px solid rgb(233, 233, 233)', marginBottom: '20px'}}></hr>
       <div className='stats-header'>
         <h4>Wybierz pracowników</h4>
         <MultiSelect 

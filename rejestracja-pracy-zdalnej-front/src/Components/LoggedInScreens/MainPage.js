@@ -1,8 +1,8 @@
 import React from "react";
 import { Card } from 'primereact/card';
-import EkranPracyZdalnej from "./icons/EkranPracyZdalnej.png";
-import EkranWyznaczaniaPracyZdalnej from "./icons/EkranWyznaczaniaPracyZdalnej.png";
-import Statystyki from "./icons/Statystyki.png";
+import EkranPracyZdalnej from "./icons/EPZ.png";
+import EkranWyznaczaniaPracyZdalnej from "./icons/EWPZ.png";
+import Statystyki from "./icons/S.png";
 import DodajPracownika from "./icons/DodajPracownika.png";
 import { Link } from 'react-router-dom';
 

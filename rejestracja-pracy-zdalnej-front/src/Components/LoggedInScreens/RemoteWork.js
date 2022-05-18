@@ -258,7 +258,8 @@ const stop = () => {
 const RemoteWork = () => {
   return (
     <div className="screen-container">
-      <h1>Ekran pracy zdalnej</h1>
+      <h2 style={{marginBottom: '20px'}}><i className='pi pi-desktop' style={{fontSize: '20px', marginRight: '10px'}}></i>Ekran pracy zdalnej</h2>
+      <hr style={{width: '100%', backgroundColor: 'rgb(233, 233, 233)', border: '1px solid rgb(233, 233, 233)', marginBottom: '20px'}}></hr>
           <DanePracownika/>
         <div className='pracaB'>
         </div>
