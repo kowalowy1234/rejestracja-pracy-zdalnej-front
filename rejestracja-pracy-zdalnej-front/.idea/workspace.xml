@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2a9d23ba-566a-45d0-97d8-d181553069aa" name="Changes" comment="" />
+=======
+    <list default="true" id="adea1746-b702-466c-a382-8ea503e8e11a" name="Changes" comment="" />
+>>>>>>> ekran_praca_zdalna_v1
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+<<<<<<< HEAD
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$/.." value="main" />
@@ -16,6 +21,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="28PvBLKJ95fRAXrHHvpnLm0kJaG" />
+=======
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="28Pz941J5yfPAAorzCkUkmq99mk" />
+>>>>>>> ekran_praca_zdalna_v1
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,11 +37,16 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../walkadog" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../App2/rejestracja-pracy-zdalnej" />
+>>>>>>> ekran_praca_zdalna_v1
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="2a9d23ba-566a-45d0-97d8-d181553069aa" name="Changes" comment="" />
       <created>1651130898827</created>
       <option name="number" value="Default" />
@@ -48,4 +66,14 @@
       </map>
     </option>
   </component>
+=======
+      <changelist id="adea1746-b702-466c-a382-8ea503e8e11a" name="Changes" comment="" />
+      <created>1651132854527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1651132854527</updated>
+    </task>
+    <servers />
+  </component>
+>>>>>>> ekran_praca_zdalna_v1
 </project>

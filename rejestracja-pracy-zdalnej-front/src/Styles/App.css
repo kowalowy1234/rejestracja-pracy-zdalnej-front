@@ -240,6 +240,7 @@ div.p-card:hover {
   background: #929292; 
 }
 
+<<<<<<< HEAD
 .stats-header {
   display: flex;
   align-items: center;
@@ -310,3 +311,89 @@ div.p-card:hover {
   font-weight: 400;
   margin-right: 20px;
 }
+=======
+
+.podkont{
+  margin-left: -60%;
+}
+
+.kalendarz{
+  margin-left: -40%;
+}
+
+div.p-card-body{
+  display: inline;
+  flex-direction: column;
+}
+
+.p-card-title{
+  font-size: 1.3em !important;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 70px;
+  text-align: center;
+  padding: 30px 0;
+}
+
+
+p.m-0{
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+
+.p-knob-text{
+  font-size: 1.1rem !important;
+}
+
+.p-button.p-component{
+  margin: 3px !important;
+}
+
+.kontenerDoPracy{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.pracaA{
+  flex:1;
+  margin-left: 25px;
+  margin-right: 25px;
+  width: 500px;
+  height: 100%;
+}
+.pracaB{
+  margin-top: 15px;
+  font-size: larger;
+}
+
+.p-datepicker table td.p-datepicker-today > span {
+  background: #007bff!important;
+  color: #ffffff!important;
+}
+
+
+.p-datepicker-group{
+  border: 0;
+  border-style: none;
+  width: 500px;
+}
+
+.p-datepicker-calendar{
+  border: 0;
+  border-style: none;
+}
+
+.name{
+  font-size: 1.7em;
+}
+
+.remaining {
+  margin-left: 140px;
+  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: clip;
+}
+>>>>>>> ekran_praca_zdalna_v1
