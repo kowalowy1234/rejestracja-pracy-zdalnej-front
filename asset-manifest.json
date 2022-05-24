@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/rejestracja-pracy-zdalnej-front/static/css/main.51ea0ca6.css",
+    "main.js": "/rejestracja-pracy-zdalnej-front/static/js/main.f50876a0.js",
+    "static/js/787.fd309413.chunk.js": "/rejestracja-pracy-zdalnej-front/static/js/787.fd309413.chunk.js",
+    "static/js/8.6262fcbc.chunk.js": "/rejestracja-pracy-zdalnej-front/static/js/8.6262fcbc.chunk.js",
+    "static/media/primeicons.svg": "/rejestracja-pracy-zdalnej-front/static/media/primeicons.c6e2053303524e39530c.svg",
+    "static/media/primeicons.eot": "/rejestracja-pracy-zdalnej-front/static/media/primeicons.7fc4d8e224d1ff1b9c62.eot",
+    "static/media/primeicons.woff": "/rejestracja-pracy-zdalnej-front/static/media/primeicons.449aa8c65cdc5c2a8686.woff",
+    "static/media/primeicons.ttf": "/rejestracja-pracy-zdalnej-front/static/media/primeicons.91bacab1f083f2795272.ttf",
+    "static/media/EPZ.png": "/rejestracja-pracy-zdalnej-front/static/media/EPZ.a19e1e4d40c206e52ebf.png",
+    "static/media/EWPZ.png": "/rejestracja-pracy-zdalnej-front/static/media/EWPZ.79b688277e4bdde46541.png",
+    "static/media/S.png": "/rejestracja-pracy-zdalnej-front/static/media/S.ee0e18fa8d0c3a16a96a.png",
+    "static/media/DodajPracownika.png": "/rejestracja-pracy-zdalnej-front/static/media/DodajPracownika.8b4059eeba7b8712a286.png",
+    "index.html": "/rejestracja-pracy-zdalnej-front/index.html",
+    "main.51ea0ca6.css.map": "/rejestracja-pracy-zdalnej-front/static/css/main.51ea0ca6.css.map",
+    "main.f50876a0.js.map": "/rejestracja-pracy-zdalnej-front/static/js/main.f50876a0.js.map",
+    "787.fd309413.chunk.js.map": "/rejestracja-pracy-zdalnej-front/static/js/787.fd309413.chunk.js.map",
+    "8.6262fcbc.chunk.js.map": "/rejestracja-pracy-zdalnej-front/static/js/8.6262fcbc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51ea0ca6.css",
+    "static/js/main.f50876a0.js"
+  ]
+}
