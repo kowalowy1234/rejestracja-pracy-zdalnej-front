@@ -85,7 +85,7 @@ const AssignRemoteWork = (props) => {
     }
 
     for(let i = 0; i < users.length; i++) {
-      axios.put(`${endpoints.remoteWork}${users[i]}`, {
+      axios.put(`${endpoints.remoteWork}/${users[i]}`, {
         idPracownika: users[i],
         dataRozpoczecia: begin,
         dataZakonczenia: end,
