@@ -6,8 +6,6 @@ const endpoints = {
   companies : `${host}firma/`,
   remoteWorkRecord : `${host}zapis-pracy/`,
   remoteWork : `${host}praca/`,
-  remoteWorkRecord : `${host}zapis-pracy`,
-  remoteWork : `${host}praca`,
   login: `${host}token/login/`,
   logout: `${host}token/logout/`,
   currentUser: `${host}users/me/`,
