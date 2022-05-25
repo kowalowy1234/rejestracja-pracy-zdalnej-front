@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/rejestracja-pracy-zdalnej-front/static/css/main.51ea0ca6.css",
-    "main.js": "/rejestracja-pracy-zdalnej-front/static/js/main.7759b734.js",
+    "main.js": "/rejestracja-pracy-zdalnej-front/static/js/main.7aa1f3b8.js",
     "static/js/787.fd309413.chunk.js": "/rejestracja-pracy-zdalnej-front/static/js/787.fd309413.chunk.js",
     "static/js/8.6262fcbc.chunk.js": "/rejestracja-pracy-zdalnej-front/static/js/8.6262fcbc.chunk.js",
     "static/media/primeicons.svg": "/rejestracja-pracy-zdalnej-front/static/media/primeicons.c6e2053303524e39530c.svg",
@@ -14,12 +14,12 @@
     "static/media/DodajPracownika.png": "/rejestracja-pracy-zdalnej-front/static/media/DodajPracownika.8b4059eeba7b8712a286.png",
     "index.html": "/rejestracja-pracy-zdalnej-front/index.html",
     "main.51ea0ca6.css.map": "/rejestracja-pracy-zdalnej-front/static/css/main.51ea0ca6.css.map",
-    "main.7759b734.js.map": "/rejestracja-pracy-zdalnej-front/static/js/main.7759b734.js.map",
+    "main.7aa1f3b8.js.map": "/rejestracja-pracy-zdalnej-front/static/js/main.7aa1f3b8.js.map",
     "787.fd309413.chunk.js.map": "/rejestracja-pracy-zdalnej-front/static/js/787.fd309413.chunk.js.map",
     "8.6262fcbc.chunk.js.map": "/rejestracja-pracy-zdalnej-front/static/js/8.6262fcbc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.51ea0ca6.css",
-    "static/js/main.7759b734.js"
+    "static/js/main.7aa1f3b8.js"
   ]
 }
