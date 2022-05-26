@@ -43,7 +43,7 @@ const Praca = (props) => {
   //pobranie danych o pracy aktualnie zalogowanego użytkownika
   const [dane, setPraca] = useState(null);
   React.useEffect(() => {
-    axios.get(`${endpoints.remoteWork}${props.idPracownika}`)
+    axios.get(`${endpoints.remoteWork}/${props.idPracownika}`)
     .then(function (response) {
       setPraca(response.data);
       if(response.data.dataZakonczenia==dzis && response.data.minutyStart!=0) showSticky()
@@ -166,7 +166,7 @@ const stop = () => {
       minutes: valueDoZapisu}))
   }
   const updateMinutes = (minutyUpdate) => {
-    axios.put(`${endpoints.remoteWork}${props.id}`, {
+    axios.put(`${endpoints.remoteWork}/${props.id}`, {
       idPracownika: props.id, 
       minutyPozostalo: minutyUpdate
     })
