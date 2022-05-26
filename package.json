@@ -24,10 +24,8 @@
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
-  "homepage": "https://kowalowy1234.github.io/rejestracja-pracy-zdalnej-front",
+  "homepage": "https://rejestracja-pracy-zdalnej.web.app",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
