@@ -43,7 +43,7 @@ const Praca = (props) => {
   //pobranie danych o pracy aktualnie zalogowanego użytkownika
   const [dane, setPraca] = useState(null);
   React.useEffect(() => {
-    axios.get(`${endpoints.remoteWork}/${props.idPracownika}`)
+    axios.get(`${endpoints.remoteWork}${props.idPracownika}`)
     .then(function (response) {
       setPraca(response.data);
       if(response.data.dataZakonczenia==dzis && response.data.minutyStart!=0) showSticky()
@@ -92,20 +92,7 @@ const Praca = (props) => {
 } 
 
 
-const Calendarz = (props) => {
-
-  const selectedDates = [props.dataRozpoczeciaPracy, props.dataZakonczeniaPracy];
-
-  return (
-      <div>
-          <Calendar selectionMode="range" 
-              value={selectedDates} readOnlyInput inline showWeek />
-      </div>
-  );
-}
-
 const Licznik = (props) => {
-  const id = sessionStorage.getItem('idPracownika')
   const toast = useRef(null);
   let czyWSrodku = props.srodek
   const [value1, setValue1] = useState(0);
@@ -179,13 +166,13 @@ const stop = () => {
       minutes: valueDoZapisu}))
   }
   const updateMinutes = (minutyUpdate) => {
-    axios.put(`${endpoints.remoteWork}/${props.id}`, {
-      idPracownika: id, 
+    axios.put(`${endpoints.remoteWork}${props.id}`, {
+      idPracownika: props.id, 
       minutyPozostalo: minutyUpdate
     })
   }
   //funkcja do zapisywania przepracowanego czasu
-  const dzis = new Date();
+  const dzis = new Date().toISOString().split('T')[0];
   const timeWorking = () => {
     axios.post(endpoints.remoteWorkRecord, {
       idPracownika: props.id,
