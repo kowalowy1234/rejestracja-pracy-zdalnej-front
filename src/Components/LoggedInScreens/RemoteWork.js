@@ -105,6 +105,10 @@ const Licznik = (props) => {
   const [disabledSaveBtn, setDisabledSaveBtn] = useState(true);
   const [userRemoteWorkData, setRemoteWorkData] = useState({minutes: ''})
   let minutyNaStarcie = props.minutyStart
+  const koniecCzasu = () => {
+    toast.current.show({severity: 'success', summary: 'Koniec minut!', 
+    detail: 'Nie masz już więcej czasu do wypracowania', sticky: true});
+}
   const zapisanoPracę = () => {
     toast.current.show({severity:'success', summary: 'Zapisano pracę', 
     detail:'Praca pomyślnie zapisana', life: 3000});
@@ -119,13 +123,15 @@ const Licznik = (props) => {
   }
   const BladPracy = () => {
     toast.current.show({severity:'error', summary: 'Błąd rozpoczęcia pracy',
-     detail:'Dzisiejsza data i data wyznaczonej pracy nie pokrywają się', life: 3000});
+     detail:'Dzisiejsza data i data wyznaczonej pracy nie pokrywają się lub nie masz już więcej czasu do wypracowania', life: 3000});
   }
   function refreshPage() {
     window.location.reload(false);
   }
   //odmierzanie czasu
   React.useEffect(() => {
+    if(valueDoZapisu>=minutyNaStarcie) {stop() 
+      koniecCzasu()}
     let timer = null;
     if (isActive) {
     timer =
@@ -136,9 +142,10 @@ const Licznik = (props) => {
     return () => clearInterval(timer);
   }, [isActive, counter]);
 
+  
   //funkcja startująca licznik
   const start = () => {
-    if(czyWSrodku===true){
+    if(czyWSrodku===true && minutyNaStarcie!=0){
       setIsActive(true)
       rozpoczętoPracę()
       const value = counter;
@@ -193,7 +200,7 @@ const stop = () => {
   }
 
     let sekunda = counter
-    
+
     if(counter===60){
       setMinuta(minuta + 1)
       setCounter(0)
@@ -212,7 +219,9 @@ const stop = () => {
     zegarek = godzinaWyswietlana+":"+minutaWyswietlana+":"+sekundaWyswietlana
     let valueDoKnoba = counter + (minuta*60) + (godzina*60)
     let valueDoZapisu = minuta + (godzina*60)
-  
+    
+    
+
   return (
     <div className="licznik">
           <Toast ref={toast} />
