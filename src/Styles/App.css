@@ -389,7 +389,10 @@ p.m-0{
 }
 
 .remaining {
-  margin-left: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   white-space: nowrap;
 	overflow: hidden;
 	text-overflow: clip;

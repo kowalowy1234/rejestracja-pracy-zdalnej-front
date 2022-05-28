@@ -21,7 +21,7 @@ const DanePracownika = () => {
     })
     .then((response) => {
       setDane(response.data);
-    });
+    }).catch(error => console.log(error));;
   }, []);
   if (!dane) return null;
   return (
@@ -60,7 +60,9 @@ const Praca = (props) => {
     czyWsrodku = false 
   }
 
-
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   const godzinaWyswietlana = Math.floor(dane.minutyPozostalo/60)
   const minutaWyswietlana = dane.minutyPozostalo%60
@@ -74,6 +76,7 @@ const Praca = (props) => {
         </div>
         <div className='remaining'>
         <p><b>Pozostało: {godzinaWyswietlana} godz i {minutaWyswietlana} min</b></p>
+        <Button className='p-button-success p-button-raised p-button-rounded' icon="pi pi-refresh" onClick={refreshPage}/>
         </div>
         <Licznik srodek={czyWsrodku} id={props.idPracownika} minutyStart={dane.minutyPozostalo}/>
       </div>
@@ -125,9 +128,7 @@ const Licznik = (props) => {
     toast.current.show({severity:'error', summary: 'Błąd rozpoczęcia pracy',
      detail:'Dzisiejsza data i data wyznaczonej pracy nie pokrywają się lub nie masz już więcej czasu do wypracowania', life: 3000});
   }
-  function refreshPage() {
-    window.location.reload(false);
-  }
+
   //odmierzanie czasu
   React.useEffect(() => {
     if(valueDoZapisu>=minutyNaStarcie) {stop() 
@@ -176,7 +177,9 @@ const stop = () => {
     axios.put(`${endpoints.remoteWork}/${props.id}`, {
       idPracownika: props.id, 
       minutyPozostalo: minutyUpdate
-    })
+    }).then(function (response) {
+      console.log(response)
+    }).catch(error => console.log(error));
   }
   //funkcja do zapisywania przepracowanego czasu
   const dzis = new Date().toISOString().split('T')[0];
@@ -187,7 +190,7 @@ const stop = () => {
       przepracowaneMinuty: userRemoteWorkData.minutes
     }).then(function (response) {
       console.log(response)
-    })
+    }).catch(error => console.log(error));
   }
 
   const save = () => {
@@ -196,7 +199,6 @@ const stop = () => {
     timeWorking()
     updateMinutes(minutyUpdate)
     setDisabledSaveBtn(true);
-    refreshPage()
   }
 
     let sekunda = counter
