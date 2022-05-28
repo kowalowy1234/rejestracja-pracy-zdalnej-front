@@ -132,9 +132,11 @@ nav ul a:hover {
 
 .loggedIn {
   margin-top: 50px;
-  display: grid;
+  margin-right: 100px;
+  margin-left: 100px;
+  display: flex;
   gap: 30px;
-  grid-template-columns: 1fr 3fr 1fr;
+  justify-content: center;
 }
 
 .screen-container {
@@ -189,14 +191,14 @@ nav ul a:hover {
 .kontenerDoKart{
   display: flex;
   align-content: center;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 50px;
-  gap: 20px;
+  gap: 40px;
 }
 
 
 .karta{
-  margin: auto;
   transform: 200ms;
 }
 
@@ -299,6 +301,10 @@ div.p-card:hover {
   justify-content: center;
 }
 
+.timeSelect .p-button.p-component {
+  margin: 0px !important;
+}
+
 /*  */
 
 .p-chart canvas {
@@ -349,9 +355,11 @@ p.m-0{
 }
 
 .kontenerDoPracy{
+  width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 
