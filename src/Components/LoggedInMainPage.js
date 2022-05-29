@@ -26,7 +26,6 @@ const LoggedInMainPage = (props) => {
     return (
       <div className="loggedIn">
         {/* <Profile type='kierownik' company={props.companyName}/> */}
-        <div></div>
         <Routes>
           <Route path="*" element={<MainPage />} />
           <Route exact path="/" element={<MainPage />} />
@@ -41,7 +40,6 @@ const LoggedInMainPage = (props) => {
   return (
     <div className="loggedIn">
       {/* <Profile type='pracownik' company={props.companyName}/> */}
-      <div></div>
       <Routes>
         <Route path="*" element={<MainPage />} />
         <Route exact path="/" element={<MainPage />} />

@@ -134,7 +134,7 @@ const Licznik = (props) => {
   React.useEffect(() => {
     if(valueDoZapisu>=minutyNaStarcie) {stop() 
       koniecCzasu()}
-  }, [counter]);
+  }, [isActive, counter]);
   let czasPoczatkowy = 0
   const update = () => {
     let time = (now() - czasPoczatkowy) + 10
@@ -156,18 +156,7 @@ const Licznik = (props) => {
     setIntervalID(null)
     setPauseTime(now())
   }
-//let interval
-  // const startTimer = () => {
-  //   let time 
-  //   let initialTime = new Date().getTime()
-  //   interval = setInterval(() => {
-  //       let now = new Date().getTime()
-  //       time = (now - initialTime) + 10
-  //       setCounter(time)
-  //       setIntervalID(interval)  
-  //   }, 10)
-  // }
-  //funkcja startująca licznik
+
   const start = () => {
     if(czyWSrodku===true && minutyNaStarcie!=0){
       // setIsActive(true)
