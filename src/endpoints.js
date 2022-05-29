@@ -1,6 +1,6 @@
 
-// const host = "https://deploy-test-praca.herokuapp.com/auth/";
-const host = "http://127.0.0.1:8000/auth/";
+const host = "https://deploy-test-praca.herokuapp.com/auth/";
+// const host = "http://127.0.0.1:8000/auth/";
 
 const endpoints = {
   employees: `${host}users/`,
