@@ -72,7 +72,6 @@ const AddEmployee = (props) => {
         password: password,
         re_password: password,
       }).then(response => {
-        console.log(response);
         toggleModal(username, password);
       }).catch(() => {
         alert('Wystąpił błąd przy tworzeniu nowego konta. Istnieje już konto z takim numerem PESEL lub adresem E-mail.');

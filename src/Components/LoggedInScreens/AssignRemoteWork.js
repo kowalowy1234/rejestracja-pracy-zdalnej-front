@@ -68,10 +68,7 @@ const AssignRemoteWork = (props) => {
       ))
       setAllUsers(employeesMapped);
 
-    }).catch(error => {
-      console.log(error);
     })
-
   }, []);
 
   const sendRequest = () => {

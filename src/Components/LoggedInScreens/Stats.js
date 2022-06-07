@@ -5,6 +5,7 @@ import endpoints from '../../endpoints';
 import ChartComponent from './ChartComponent';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
+import usePairMinutesToUser from '../../CustomHooks/usePairMinutesToUser';
 
 
 const Stats = (props) => {
@@ -38,10 +39,7 @@ const Stats = (props) => {
       ))
       setAllUsers(employeesMapped);
 
-    }).catch(error => {
-      console.log(error);
     })
-
   }, [])
 
   const filterOptions = [
@@ -50,6 +48,8 @@ const Stats = (props) => {
     {label: 'Miesiąc', value: 'month'},
     {label: 'Rok', value: 'year'},
   ];
+
+  const stats = usePairMinutesToUser(users, filter, props.token);
 
   return (
     <div className="screen-container">
@@ -70,14 +70,7 @@ const Stats = (props) => {
         <h4>Wybierz zakres sumowania</h4>
         <Dropdown placeholder='Zakres' options={filterOptions} value={filter} onChange={(e) => {setFilter(e.value)}}/>
       </div>
-      <Button 
-        label='Wyświetl statystyki'
-        className="p-button-success stats-button"
-        icon='pi pi-chart-bar'
-        style={{marginTop: '10px', marginBottom: '10px'}}
-        onClick={() => {window.location.reload()}}
-      />
-      <ChartComponent usersData={users} token={props.token} filter={filter}/>
+      <ChartComponent usersData={users} token={props.token} filter={filter} stats={stats}/>
     </div>
   )
 }

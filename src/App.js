@@ -65,9 +65,6 @@ const FetchCompanyName = (firmaId) => {
     .then(function (response) {
       sessionStorage.clear();
       setLoggedInUser({type: null, company: null})
-    })
-    .catch(function (error) {
-      console.log(error);
     });
   }
 

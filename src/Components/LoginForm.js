@@ -34,10 +34,6 @@ const LoginForm = (props) => {
       // FetchUserData(token)
       sessionStorage.setItem('token', token)
       props.login()
-    })
-    .catch(function (error) {
-      console.log(error);
-      setErrorAlert(true)
     });
   }
 

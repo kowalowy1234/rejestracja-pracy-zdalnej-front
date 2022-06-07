@@ -21,7 +21,7 @@ const DanePracownika = () => {
     })
     .then((response) => {
       setDane(response.data);
-    }).catch(error => console.log(error));;
+    })
   }, []);
   if (!dane) return null;
   return (
@@ -47,8 +47,6 @@ const Praca = (props) => {
     .then(function (response) {
       setPraca(response.data);
       if(response.data.dataZakonczenia==dzis && response.data.minutyStart!=0) showSticky()
-    }).catch(function(error){
-      console.log(error);
     });
   },[]);
   if (!dane) return null;
@@ -178,8 +176,7 @@ const stop = () => {
       idPracownika: props.id, 
       minutyPozostalo: minutyUpdate
     }).then(function (response) {
-      console.log(response)
-    }).catch(error => console.log(error));
+    });
   }
   //funkcja do zapisywania przepracowanego czasu
   const dzis = new Date().toISOString().split('T')[0];
@@ -189,8 +186,7 @@ const stop = () => {
       data: dzis,
       przepracowaneMinuty: userRemoteWorkData.minutes
     }).then(function (response) {
-      console.log(response)
-    }).catch(error => console.log(error));
+    });
   }
 
   const save = () => {
