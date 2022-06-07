@@ -21,7 +21,7 @@ const DanePracownika = () => {
     })
     .then((response) => {
       setDane(response.data);
-    })
+    });
   }, []);
   if (!dane) return null;
   return (
@@ -58,9 +58,7 @@ const Praca = (props) => {
     czyWsrodku = false 
   }
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+
 
   const godzinaWyswietlana = Math.floor(dane.minutyPozostalo/60)
   const minutaWyswietlana = dane.minutyPozostalo%60
@@ -74,7 +72,6 @@ const Praca = (props) => {
         </div>
         <div className='remaining'>
         <p><b>Pozostało: {godzinaWyswietlana} godz i {minutaWyswietlana} min</b></p>
-        <Button className='p-button-success p-button-raised p-button-rounded' icon="pi pi-refresh" onClick={refreshPage}/>
         </div>
         <Licznik srodek={czyWsrodku} id={props.idPracownika} minutyStart={dane.minutyPozostalo}/>
       </div>
@@ -96,10 +93,10 @@ const Praca = (props) => {
 const Licznik = (props) => {
   const toast = useRef(null);
   let czyWSrodku = props.srodek
-  const [value1, setValue1] = useState(0);
   let [counter, setCounter] = useState(0);
-  let [minuta, setMinuta] = useState(0);
-  let [godzina, setGodzina] = useState(0);
+  let [intervalID, setIntervalID] = useState(0);
+  let [pauseTime, setPauseTime] = useState(0);
+  let [initialTime, setInitialTime] = useState(0);
   const [disabledStartBtn, setDisabledStartBtn] = useState(false);
   const [disabledStopBtn, setDisabledStopBtn] = useState(true);
   const [isActive, setIsActive] = useState(false);
@@ -126,29 +123,44 @@ const Licznik = (props) => {
     toast.current.show({severity:'error', summary: 'Błąd rozpoczęcia pracy',
      detail:'Dzisiejsza data i data wyznaczonej pracy nie pokrywają się lub nie masz już więcej czasu do wypracowania', life: 3000});
   }
-
+  function refreshPage() {
+    window.location.reload(false);
+  }
+  let time = 0
+  const now = () => new Date().getTime();
   //odmierzanie czasu
   React.useEffect(() => {
     if(valueDoZapisu>=minutyNaStarcie) {stop() 
       koniecCzasu()}
-    let timer = null;
-    if (isActive) {
-    timer =
-      counter >= 0 && setInterval(() => setCounter(counter + 1), 1000);}
-    else if(!isActive && counter!==0){
-      clearInterval(timer);
-    }
-    return () => clearInterval(timer);
   }, [isActive, counter]);
+  let czasPoczatkowy = 0
+  const update = () => {
+    let time = (now() - czasPoczatkowy) + 10
+    setCounter(time)}
 
-  
-  //funkcja startująca licznik
+    const startTimer = () => {
+    setInitialTime(now())
+    czasPoczatkowy = now()
+    let interval = setInterval(update, 10);
+    setIntervalID(interval)
+  }
+  const resumeTimer = () => {
+    czasPoczatkowy = now() - (pauseTime-initialTime);
+    let interval = setInterval(update, 10);
+    setIntervalID(interval)
+  }
+  const pauseTimer = () => {
+    clearInterval(intervalID);
+    setIntervalID(null)
+    setPauseTime(now())
+  }
+
   const start = () => {
     if(czyWSrodku===true && minutyNaStarcie!=0){
-      setIsActive(true)
+      // setIsActive(true)
       rozpoczętoPracę()
-      const value = counter;
-      setCounter(value);
+      if(counter!=0)resumeTimer()
+      else startTimer()
       setDisabledStartBtn(true);
       setDisabledStopBtn(false);
       setDisabledSaveBtn(true);
@@ -159,11 +171,10 @@ const Licznik = (props) => {
   }
 //funkcja zatrzymująca licznik
 const stop = () => {
+    pauseTimer()
     zatrzymanoPracę()
     setIsActive(false);
-    const value = counter;
-    setValue1(value);
-    setDisabledStopBtn(value === 0);
+    setDisabledStopBtn(counter === 0);
     setDisabledStopBtn(true);
     setDisabledStartBtn(false);
     setDisabledSaveBtn(false);
@@ -175,8 +186,12 @@ const stop = () => {
     axios.put(`${endpoints.remoteWork}/${props.id}`, {
       idPracownika: props.id, 
       minutyPozostalo: minutyUpdate
+<<<<<<< HEAD
     }).then(function (response) {
     });
+=======
+    })
+>>>>>>> fa9cda3b93ece719f4095f7d09241d9d57dac98a
   }
   //funkcja do zapisywania przepracowanego czasu
   const dzis = new Date().toISOString().split('T')[0];
@@ -186,7 +201,12 @@ const stop = () => {
       data: dzis,
       przepracowaneMinuty: userRemoteWorkData.minutes
     }).then(function (response) {
+<<<<<<< HEAD
     });
+=======
+      console.log(response)
+    })
+>>>>>>> fa9cda3b93ece719f4095f7d09241d9d57dac98a
   }
 
   const save = () => {
@@ -195,27 +215,21 @@ const stop = () => {
     timeWorking()
     updateMinutes(minutyUpdate)
     setDisabledSaveBtn(true);
+    refreshPage()
   }
 
-    let sekunda = counter
-
-    if(counter===60){
-      setMinuta(minuta + 1)
-      setCounter(0)
-    }
-    if(minuta===60){
-      setGodzina(godzina +1 )
-      setMinuta(0)
-    }
+    let sekunda = Math.floor(counter/1000)
+    let minuta = Math.floor(sekunda/60)
+    let godzina = Math.floor(minuta/60)
     let zegarek = ""
     let godzinaWyswietlana=godzina
     if(godzina<10) godzinaWyswietlana="0"+godzinaWyswietlana
-    let minutaWyswietlana=minuta
+    let minutaWyswietlana=minuta%60
     if(minutaWyswietlana<10) minutaWyswietlana="0"+minutaWyswietlana
-    let sekundaWyswietlana=sekunda
+    let sekundaWyswietlana=sekunda%60
     if(sekundaWyswietlana<10) sekundaWyswietlana="0"+sekundaWyswietlana
     zegarek = godzinaWyswietlana+":"+minutaWyswietlana+":"+sekundaWyswietlana
-    let valueDoKnoba = counter + (minuta*60) + (godzina*60)
+    let valueDoKnoba = sekunda%60 + (minuta*60) + (godzina*60)
     let valueDoZapisu = minuta + (godzina*60)
     
     
