@@ -4,24 +4,24 @@ import { Chart } from 'primereact/chart';
 const ChartComponent = ({stats}) => {
 
   const [basicData, setBasicData] = useState({
-    labels: stats[0],
+    labels: stats[0][0],
     datasets: [
       {
         label: 'Przepracowane minuty',
         backgroundColor: '#FFA726',
-        data: stats[1],
+        data: stats[1][0],
       }
     ]
   });
 
   useEffect(() => {
     setBasicData({
-      labels: stats[0],
+      labels: stats[0][0],
       datasets: [
         {
           label: 'Przepracowane minuty',
           backgroundColor: '#FFA726',
-          data: stats[1],
+          data: stats[1][0],
         }
       ]
     })

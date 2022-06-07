@@ -69,7 +69,10 @@ const Stats = (props) => {
         <h4>Wybierz zakres sumowania</h4>
         <Dropdown placeholder='Zakres' options={filterOptions} value={filter} onChange={(e) => {setFilter(e.value)}}/>
       </div>
-      <ChartComponent usersData={users} token={props.token} filter={filter} stats={stats}/>
+      <ChartComponent usersData={users} token={props.token} filter={filter} 
+      stats={
+        [[JSON.parse(sessionStorage.getItem('userLabels'))]
+        ,[JSON.parse(sessionStorage.getItem('minuteLabels'))]]}/>
     </div>
   )
 }

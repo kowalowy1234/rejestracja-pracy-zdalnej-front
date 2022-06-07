@@ -28,10 +28,9 @@ const usePairMinutesToUser = (userIds, filter, token) => {
       }).then(response => setUsersData(prevResults => [...prevResults, response.data])));
     }
 
-    Promise.all(userPromises);
-    Promise.all(minutePromises);
+    Promise.all(userPromises, minutePromises);
 
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userIds, filter]);
 
   const minuteLabels = [];
@@ -48,6 +47,9 @@ const usePairMinutesToUser = (userIds, filter, token) => {
       }
     }
   }
+  
+  sessionStorage.setItem('userLabels', JSON.stringify(userLabels));
+  sessionStorage.setItem('minuteLabels', JSON.stringify(minuteLabels));
   return [userLabels, minuteLabels];
 }
 
