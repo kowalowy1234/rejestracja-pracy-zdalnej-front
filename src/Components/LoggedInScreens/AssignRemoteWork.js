@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-loop-func */
 import { MultiSelect } from 'primereact/multiselect';
 import { useEffect, useRef, useState } from 'react';

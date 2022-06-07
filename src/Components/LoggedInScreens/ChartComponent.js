@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'primereact/chart';
 
-const ChartComponent = ({usersData, token, filter, stats}) => {
+const ChartComponent = ({stats}) => {
 
   const [basicData, setBasicData] = useState({
     labels: stats[0],

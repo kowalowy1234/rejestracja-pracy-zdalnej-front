@@ -4,7 +4,6 @@ import axios from 'axios';
 import endpoints from '../../endpoints';
 import ChartComponent from './ChartComponent';
 import { Dropdown } from 'primereact/dropdown';
-import { Button } from 'primereact/button';
 import usePairMinutesToUser from '../../CustomHooks/usePairMinutesToUser';
 
 
@@ -16,7 +15,6 @@ const Stats = (props) => {
 
   const [filter, setFilter] = useState('day');
 
-  // pobieranie przefiltrowanej listy pracowników tylko z danej firmy
   useEffect(() => {
 
     axios.get(endpoints.usersAndRegister, {
@@ -40,6 +38,7 @@ const Stats = (props) => {
       setAllUsers(employeesMapped);
 
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const filterOptions = [

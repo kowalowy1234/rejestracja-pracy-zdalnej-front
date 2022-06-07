@@ -1,4 +1,6 @@
-import { Calendar } from 'primereact/calendar';
+/* eslint-disable eqeqeq */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import "primeicons/primeicons.css";
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
@@ -186,12 +188,8 @@ const stop = () => {
     axios.put(`${endpoints.remoteWork}/${props.id}`, {
       idPracownika: props.id, 
       minutyPozostalo: minutyUpdate
-<<<<<<< HEAD
     }).then(function (response) {
     });
-=======
-    })
->>>>>>> fa9cda3b93ece719f4095f7d09241d9d57dac98a
   }
   //funkcja do zapisywania przepracowanego czasu
   const dzis = new Date().toISOString().split('T')[0];
@@ -201,12 +199,8 @@ const stop = () => {
       data: dzis,
       przepracowaneMinuty: userRemoteWorkData.minutes
     }).then(function (response) {
-<<<<<<< HEAD
-    });
-=======
       console.log(response)
     })
->>>>>>> fa9cda3b93ece719f4095f7d09241d9d57dac98a
   }
 
   const save = () => {

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import '../Styles/App.css';
 import { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
