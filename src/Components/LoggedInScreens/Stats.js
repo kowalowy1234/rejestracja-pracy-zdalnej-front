@@ -4,7 +4,6 @@ import axios from 'axios';
 import endpoints from '../../endpoints';
 import ChartComponent from './ChartComponent';
 import { Dropdown } from 'primereact/dropdown';
-import usePairMinutesToUser from '../../CustomHooks/usePairMinutesToUser';
 
 
 const Stats = (props) => {
@@ -42,13 +41,11 @@ const Stats = (props) => {
   }, [])
 
   const filterOptions = [
-    {label: 'Dzień', value: 'day'},
-    {label: 'Tydzień', value: 'week'},
-    {label: 'Miesiąc', value: 'month'},
-    {label: 'Rok', value: 'year'},
+    {label: 'Wczorajszy dzień', value: 'day'},
+    {label: 'Ostatni tydzień', value: 'week'},
+    {label: 'Ostatni miesiąc', value: 'month'},
+    {label: 'Poprzedni rok', value: 'year'},
   ];
-
-  const stats = usePairMinutesToUser(users, filter, props.token);
 
   return (
     <div className="screen-container">
@@ -69,10 +66,7 @@ const Stats = (props) => {
         <h4>Wybierz zakres sumowania</h4>
         <Dropdown placeholder='Zakres' options={filterOptions} value={filter} onChange={(e) => {setFilter(e.value)}}/>
       </div>
-      <ChartComponent usersData={users} token={props.token} filter={filter} 
-      stats={
-        [[JSON.parse(sessionStorage.getItem('userLabels'))]
-        ,[JSON.parse(sessionStorage.getItem('minuteLabels'))]]}/>
+      <ChartComponent filter={filter} users={users} />
     </div>
   )
 }
