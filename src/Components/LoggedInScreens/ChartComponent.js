@@ -20,8 +20,12 @@ const ChartComponent = ({ users, filter }) => {
     axios.get(`${endpoints.workedMinutes}?group_by=${filter}`)
     .then(response => {
       const stats = response.data;
-      const nameLabels = stats.map(element => `${element.user.first_name} ${element.user.last_name}`);
-      const minuteLabels = stats.map(element => element.przepracowaneMinuty);
+      console.log(stats);
+      const statsFiltered = stats.filter(element => {
+        return users.includes(element.idPracownika)
+      })
+      const nameLabels = statsFiltered.map(element => `${element.user.first_name} ${element.user.last_name}`);
+      const minuteLabels = statsFiltered.map(element => element.przepracowaneMinuty);
       setBasicData({
         labels: nameLabels,
         datasets: [
